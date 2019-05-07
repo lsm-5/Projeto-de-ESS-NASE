@@ -5,8 +5,7 @@ exports.config = {
     seleniumAddress: 'http://127.0.0.1:4444/wd/hub',
     SELENIUM_PROMISE_MANAGER: false,
     capabilities: {
-        browserName: 'firefox',
-        platform: 'LINUX',
+        browserName: 'chrome'
     },
     framework: 'custom',
     frameworkPath: require.resolve('protractor-cucumber-framework'),

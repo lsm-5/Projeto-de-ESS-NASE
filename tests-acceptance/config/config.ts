@@ -6,10 +6,9 @@ export let config: Config = {
 
     SELENIUM_PROMISE_MANAGER: false,
 
-		capabilities: {
-			browserName: 'firefox',
-			platform: 'LINUX',
-		}	,
+    capabilities: {
+        browserName: 'chrome'
+    },
 
     framework: 'custom',
     frameworkPath: require.resolve('protractor-cucumber-framework'),

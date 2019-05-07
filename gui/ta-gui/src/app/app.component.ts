@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { NgModule } from '@angular/core';
 
-import { Aluno } from './aluno';
-import { AlunoService } from './aluno.service';
+import { AtividadeEmCampo } from './atividadeEmCampo';
+import { AtividadeEmCampoService } from './atividadeEmCampo.service';
 
 @Component({
   selector: 'app-root',
@@ -10,31 +10,29 @@ import { AlunoService } from './aluno.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-   constructor(private alunoService: AlunoService) {}
+   constructor(private atividadeService: AtividadeEmCampoService) {}
 
-   aluno: Aluno = new Aluno();
-   alunos: Aluno[] = [];
-   loginduplicado: boolean = false;
+   atividade: AtividadeEmCampo = new AtividadeEmCampo();
+   atividades: AtividadeEmCampo[] = [];
+   //cpfLoginduplicado: boolean = false;
 
-
-   criarAluno(a: Aluno): void {
-     if(this.alunoService.criar(a)){
-      this.alunos.push(a);
-      this.aluno = new Aluno();
-      }else{
-         this.loginduplicado = true;
-      }
+   criarAtividade(a: AtividadeEmCampo): void {
+     if (this.atividadeService.criar(a)) {
+       this.atividades.push(a);
+       this.atividade = new AtividadeEmCampo();
+     } else {
+       //this.cpfLoginduplicado = true;
+     }
    }
-   removerAluno(aluno:Aluno): void{
-      //========================aqui
-      if(this.alunoService.remover(aluno)){
-         this.alunos = this.alunos.filter(b => b.cpf != aluno.cpf);
-         this.aluno = new Aluno();
-      }
-      //==============================
+
+   removerAtividade(a: AtividadeEmCampo):void{
+      if(this.atividadeService.remover(a)){
+        //this.atividades = this.atividades.filter(b=>b.cpf != a.cpf);
+        this.atividade = new AtividadeEmCampo();
+      }                                     
    }
    onMove(): void {
-      this.loginduplicado = false;
+      //this.cpfLoginduplicado = false;
    }
 
 }

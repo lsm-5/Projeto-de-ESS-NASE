@@ -5,15 +5,13 @@ import { RouterModule }   from '@angular/router';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { MetasComponent } from './metas.component';
-import { AlunosComponent } from './alunos.component';
-import { AlunoService } from './aluno.service';
+import { AtividadeEmCampoComponent } from './atividadeEmCampo.component';
+import { AtividadeEmCampoService } from './atividadeEmCampo.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MetasComponent,
-    AlunosComponent
+    AtividadeEmCampoComponent
   ],
   imports: [
     BrowserModule,
@@ -21,16 +19,12 @@ import { AlunoService } from './aluno.service';
     HttpModule, 
     RouterModule.forRoot([
       {
-        path: 'metas',
-        component: MetasComponent
-      },
-      {
-        path: 'alunos',
-        component: AlunosComponent
+        path: 'atividadeEmCampo',
+        component: AtividadeEmCampoComponent
       }
     ])
   ],
-  providers: [AlunoService],
+  providers: [AtividadeEmCampoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

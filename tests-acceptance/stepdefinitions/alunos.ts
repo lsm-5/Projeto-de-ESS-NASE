@@ -20,19 +20,10 @@ defineSupportCode(function ({ Given, When, Then }) {
     Given(/^I cannot see a student with CPF "(\d*)" in the students list$/, async (cpf) => {
         var allcpfs : ElementArrayFinder = element.all(by.name('cpflist'));
         await allcpfs;
-        var samecpfs = allcpfs.filter(elem => elem.getText().then(text => text === cpf));
+        var samecpfs = allcpfs.filter(elem =>
+                                      elem.getText().then(text => text === cpf));
         await samecpfs;
         await samecpfs.then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(0));
-
-    });
-
-    Given(/^I can see a student "([^\"]*)" with CPF "(\d*)" in the students list$/, async (name,cpf) => {
-        await $("input[name='namebox']").sendKeys(<string> name);
-        await $("input[name='cpfbox']").sendKeys(<string> cpf);
-        await element(by.buttonText('Adicionar')).click();
-        var allalunos : ElementArrayFinder = element.all(by.name('alunolist'));
-        allalunos.filter(elem => pAND(sameCPF(elem,cpf),sameName(elem,name)))
-        .then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
     });
 
     When(/^I try to register the student "([^\"]*)" with CPF "(\d*)"$/, async (name, cpf) => {
@@ -41,24 +32,8 @@ defineSupportCode(function ({ Given, When, Then }) {
         await element(by.buttonText('Adicionar')).click();
     });
 
-    When(/^I try to remove student "([^\"]*)" with CPF "(\d*)"$/, async (name, cpf) => {
-        await $("input[name='namebox']").sendKeys(<string> name);
-        await $("input[name='cpfbox']").sendKeys(<string> cpf);
-        await element(by.buttonText('Remover')).click();
-    });
-
     Then(/^I can see "([^\"]*)" with CPF "(\d*)" in the students list$/, async (name, cpf) => {
         var allalunos : ElementArrayFinder = element.all(by.name('alunolist'));
-        allalunos.filter(elem => pAND(sameCPF(elem,cpf),sameName(elem,name)))
-        .then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
-        await $("input[name='namebox']").sendKeys(<string> name);
-        await $("input[name='cpfbox']").sendKeys(<string> cpf);
-        await element(by.buttonText('Remover')).click();
-    });
-
-    Then(/^I cannot see "([^\"]*)" with CPF "(\d*)" in the students list$/, async (name, cpf) => {
-        var allalunos : ElementArrayFinder = element.all(by.name('alunolist'));
-        allalunos.filter(elem => pAND(sameCPF(elem,cpf),sameName(elem,name)))
-        .then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(0));
+        allalunos.filter(elem => pAND(sameCPF(elem,cpf),sameName(elem,name))).then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
     });
 })

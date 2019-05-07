@@ -2,10 +2,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = require("express");
 const bodyParser = require("body-parser");
-const cadastrodealunos_1 = require("./cadastrodealunos");
+const cadastrodeatividades_1 = require("./cadastrodeatividades");
 var app = express();
 exports.app = app;
-var cadastro = new cadastrodealunos_1.CadastroDeAlunos();
+var cadastro = new cadastrodeatividades_1.CadastroDeAtividades();
 var allowCrossDomain = function (req, res, next) {
     res.header('Access-Control-Allow-Origin', "*");
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
@@ -14,36 +14,37 @@ var allowCrossDomain = function (req, res, next) {
 };
 app.use(allowCrossDomain);
 app.use(bodyParser.json());
-app.get('/alunos', function (req, res) {
-    res.send(JSON.stringify(cadastro.getAlunos()));
+app.get('/atividades', function (req, res) {
+    res.send(JSON.stringify(cadastro.getAtividades()));
 });
-app.delete('/aluno', function (req, res) {
-    //====================AQUI
-    var cpf = req.body;
-    var alunos = cadastro.remover(cpf); //retorna array de alunos
-    res.send({ "success": "O aluno foi removido com sucesso" });
-    //================================
-});
-app.post('/aluno', function (req, res) {
-    var aluno = req.body; //verificar se é mesmo Aluno!
-    console.log(aluno);
-    console.log(JSON.stringify(aluno));
-    aluno = cadastro.criar(aluno);
-    if (aluno) {
-        res.send({ "success": "O aluno foi cadastrado com sucesso" });
+app.post('/atividade', function (req, res) {
+    var atividade = req.body; //verificar se é mesmo Aluno!
+    atividade = cadastro.criar(atividade);
+    if (atividade) {
+        res.send({ "success": "A atividade em campo foi cadastrado com sucesso" });
     }
     else {
-        res.send({ "failure": "O aluno não pode ser cadastrado" });
+        res.send({ "failure": "A atividade em campo não pode ser cadastrado" });
     }
 });
-app.put('/aluno', function (req, res) {
-    var aluno = req.body;
-    aluno = cadastro.atualizar(aluno);
-    if (aluno) {
-        res.send({ "success": "O aluno foi atualizado com sucesso" });
+app.put('/atividade', function (req, res) {
+    var atividade = req.body;
+    atividade = cadastro.atualizar(atividade);
+    if (atividade) {
+        res.send({ "success": "A atividade em campo foi atualizado com sucesso" });
     }
     else {
-        res.send({ "failure": "O aluno não pode ser atualizado" });
+        res.send({ "failure": "A atividade em campo não pode ser atualizado" });
+    }
+});
+app.delete('/atividade', function (req, res) {
+    var atividade = req.body;
+    var removido = cadastro.remover(atividade); //deveria haver um teste de remoção
+    if (removido) {
+        res.send({ "success": "A atividade em campo foi atualizado com sucesso" });
+    }
+    else {
+        res.send({ "failure": "A atividade em campo não pode ser atualizado" });
     }
 });
 app.listen(3000, function () {

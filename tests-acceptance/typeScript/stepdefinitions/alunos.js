@@ -29,35 +29,13 @@ cucumber_1.defineSupportCode(function ({ Given, When, Then }) {
         yield samecpfs;
         yield samecpfs.then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(0));
     }));
-    Given(/^I can see a student "([^\"]*)" with CPF "(\d*)" in the students list$/, (name, cpf) => __awaiter(this, void 0, void 0, function* () {
-        yield protractor_1.$("input[name='namebox']").sendKeys(name);
-        yield protractor_1.$("input[name='cpfbox']").sendKeys(cpf);
-        yield protractor_1.element(protractor_1.by.buttonText('Adicionar')).click();
-        var allalunos = protractor_1.element.all(protractor_1.by.name('alunolist'));
-        allalunos.filter(elem => pAND(sameCPF(elem, cpf), sameName(elem, name)))
-            .then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
-    }));
     When(/^I try to register the student "([^\"]*)" with CPF "(\d*)"$/, (name, cpf) => __awaiter(this, void 0, void 0, function* () {
         yield protractor_1.$("input[name='namebox']").sendKeys(name);
         yield protractor_1.$("input[name='cpfbox']").sendKeys(cpf);
         yield protractor_1.element(protractor_1.by.buttonText('Adicionar')).click();
     }));
-    When(/^I try to remove student "([^\"]*)" with CPF "(\d*)"$/, (name, cpf) => __awaiter(this, void 0, void 0, function* () {
-        yield protractor_1.$("input[name='namebox']").sendKeys(name);
-        yield protractor_1.$("input[name='cpfbox']").sendKeys(cpf);
-        yield protractor_1.element(protractor_1.by.buttonText('Remover')).click();
-    }));
     Then(/^I can see "([^\"]*)" with CPF "(\d*)" in the students list$/, (name, cpf) => __awaiter(this, void 0, void 0, function* () {
         var allalunos = protractor_1.element.all(protractor_1.by.name('alunolist'));
-        allalunos.filter(elem => pAND(sameCPF(elem, cpf), sameName(elem, name)))
-            .then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
-        yield protractor_1.$("input[name='namebox']").sendKeys(name);
-        yield protractor_1.$("input[name='cpfbox']").sendKeys(cpf);
-        yield protractor_1.element(protractor_1.by.buttonText('Remover')).click();
-    }));
-    Then(/^I cannot see "([^\"]*)" with CPF "(\d*)" in the students list$/, (name, cpf) => __awaiter(this, void 0, void 0, function* () {
-        var allalunos = protractor_1.element.all(protractor_1.by.name('alunolist'));
-        allalunos.filter(elem => pAND(sameCPF(elem, cpf), sameName(elem, name)))
-            .then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(0));
+        allalunos.filter(elem => pAND(sameCPF(elem, cpf), sameName(elem, name))).then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
     }));
 });
