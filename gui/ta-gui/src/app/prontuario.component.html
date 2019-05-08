@@ -5,17 +5,12 @@
 <tr>
    <td><label>Nome* </label></td>
    <td><input [(ngModel)]="prontuario.nome" name="namebox"></td>
-   <td><button (click)="criarProntuario(prontuario)">Adicionar</button></td>
-  <!-- <td><button (click)="removerProntuario(prontuario)">Remover</button></td> -->
+   
 </tr>
 <tr>
    <td><label>CPF* </label></td>
    <td><input [(ngModel)]="prontuario.cpf" name="cpfbox"></td>
-  <!--
-   <td *ngIf="prontuárioduplicado">
-     Já existe um prontuário com esse nome, CPF, data e horário
-   </td>
-   -->
+  
 </tr>
 <tr>
    <td><label>Horário* </label></td>
@@ -29,9 +24,16 @@
 <tr>
    <td><label>Comentários </label></td>
    <td><input [(ngModel)]="prontuario.comentario" ></td>
+   <td><button (click)="criarProntuario(prontuario)">Registrar Prontuário</button></td>
+  <!-- <td><button (click)="removerProntuario(prontuario)">Remover</button></td> -->
+  <!--
+   <td *ngIf="prontuárioduplicado">
+     Já existe um prontuário com esse nome, CPF, data e horário
+   </td>
+-->
 </tr>
 </table>
-<!--
+
 <table>
 <tr *ngIf="prontuarios.length > 0">
    <th>Nome</th>
@@ -49,5 +51,5 @@
   
 </tr>
 </table>
--->
+
 </html>
