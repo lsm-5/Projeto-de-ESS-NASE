@@ -14,7 +14,7 @@ export class AtividadeEmCampoComponent implements OnInit {
 
    atividade: AtividadeEmCampo = new AtividadeEmCampo();
    atividades: AtividadeEmCampo[];
-   //cpfLoginduplicado: boolean = false;
+   atividadeduplicada: boolean = false;
 
    criarAtividade(a: AtividadeEmCampo): void {
      this.atividadeService.criar(a)
@@ -23,7 +23,7 @@ export class AtividadeEmCampoComponent implements OnInit {
               this.atividades.push(ab);
               this.atividade = new AtividadeEmCampo();
            } else {
-              //this.cpfLoginduplicado = true;
+               this.atividadeduplicada = true;
            }
         })
         .catch(erro => alert(erro));
@@ -33,7 +33,7 @@ export class AtividadeEmCampoComponent implements OnInit {
       this.atividadeService.remover(a)
       .then(a=>{
          if(a){
-            //this.atividades = this.atividades.filter(b=>b.cpf != a.cpf);
+            this.atividades = this.atividades.filter(b=>b.atividade != a.atividade);
             this.atividade = new AtividadeEmCampo();
          }
       })
@@ -42,7 +42,7 @@ export class AtividadeEmCampoComponent implements OnInit {
 
 
    onMove(): void {
-      //this.cpfLoginduplicado = false;
+      this.atividadeduplicada = false;
    }
 
    ngOnInit(): void {

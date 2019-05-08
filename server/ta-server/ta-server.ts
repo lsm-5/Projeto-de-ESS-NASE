@@ -23,7 +23,8 @@ app.get('/atividades', function (req, res) {
 })
 
 app.post('/atividade', function (req: express.Request, res: express.Response) {
-  var atividade: AtividadeEmCampo = <AtividadeEmCampo> req.body; //verificar se é mesmo Aluno!
+  var atividade = req.body; 
+  console.log(atividade);
   atividade = cadastro.criar(atividade);
   if (atividade) {
     res.send({"success": "A atividade em campo foi cadastrado com sucesso"});

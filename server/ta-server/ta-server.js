@@ -18,7 +18,8 @@ app.get('/atividades', function (req, res) {
     res.send(JSON.stringify(cadastro.getAtividades()));
 });
 app.post('/atividade', function (req, res) {
-    var atividade = req.body; //verificar se é mesmo Aluno!
+    var atividade = req.body;
+    console.log(atividade);
     atividade = cadastro.criar(atividade);
     if (atividade) {
         res.send({ "success": "A atividade em campo foi cadastrado com sucesso" });

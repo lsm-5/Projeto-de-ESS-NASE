@@ -9,9 +9,10 @@ class CadastroDeAtividades {
         var result = null;
         if (this.atividadeNaoCadastrada(atividade.atividade)) {
             result = new atividadeEmCampo_1.AtividadeEmCampo();
+            result.copyFrom(atividade);
             this.atividades.push(result);
         }
-        return result;
+        return atividade;
     }
     remover(atividade) {
         this.atividades = this.atividades.filter(a => a.atividade != atividade.atividade);

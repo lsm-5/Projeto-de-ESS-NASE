@@ -4,8 +4,8 @@
 <tr>
    <td><label>Nome da Atividade em Campo </label></td>
    <td><input [(ngModel)]="atividade.atividade" ></td>
-   <td><button (click)="criarAtividade(Atividade)">Adicionar</button></td>
-   <td><button (click)="removerAtividade(Atividade)">Remover</button></td>
+   <td><button (click)="criarAtividade(atividade)">Adicionar</button></td>
+   <td><button (click)="removerAtividade(atividade)">Remover</button></td>
 </tr>
 <tr>
    <td><label>Profissional </label></td>
@@ -16,15 +16,15 @@
 </tr>
 <tr>
    <td><label>Participantes</label></td>
-   <td><input [(ngModel)]="aluno.participantes" ></td>
+   <td><input [(ngModel)]="atividade.participantes" ></td>
 </tr>
 <tr>
    <td><label>Local</label></td>
-   <td><input [(ngModel)]="aluno.local" ></td>
+   <td><input [(ngModel)]="atividade.local" ></td>
 </tr>
 <tr>
    <td><label>Data</label></td>
-   <td><input [(ngModel)]="aluno.data" ></td>
+   <td><input [(ngModel)]="atividade.data" ></td>
 </tr>
 </table>
 
@@ -36,7 +36,7 @@
    <th>Local</th>
    <th>Data</th>
 </tr>
-<tr *ngFor="let a of alunos">
+<tr *ngFor="let a of atividades">
    <td>{{a.atividade}}</td>
    <td>{{a.profissional}}</td>
    <td>{{a.participantes}}</td>

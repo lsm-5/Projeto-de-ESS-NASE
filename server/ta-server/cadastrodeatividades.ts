@@ -7,10 +7,10 @@ export class CadastroDeAtividades {
     var result = null;
     if (this.atividadeNaoCadastrada(atividade.atividade)) {
       result = new AtividadeEmCampo();
-      
+      result.copyFrom(atividade);
       this.atividades.push(result);
     }
-    return result;
+    return atividade;
   }
 
   remover(atividade:AtividadeEmCampo): boolean {
