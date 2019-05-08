@@ -3,7 +3,8 @@ export class AtividadeEmCampo {
   profissional: string;
   participantes: string;
   local: string;
-  data: string;
+  datainicial: string;
+  datafinal: string;
 
   constructor() {
     this.clean();
@@ -14,13 +15,15 @@ export class AtividadeEmCampo {
     this.profissional = "";
     this.participantes = "";
     this.local = "";
-    this.data = "";
+    this.datainicial = "";
+    this.datafinal="";
   }
   copyFrom(from: AtividadeEmCampo): void {
     this.atividade = from.atividade;
     this.profissional = from.profissional;
     this.participantes = from.participantes;
     this.local = from.local;
-    this.data = from.data;
+    this.datainicial = from.datainicial;
+    this.datafinal = from.datafinal;
   }
 }

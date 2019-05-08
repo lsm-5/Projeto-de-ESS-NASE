@@ -29,8 +29,12 @@
    <td><input [(ngModel)]="atividade.local" ></td>
 </tr>
 <tr>
-   <td><label>Data</label></td>
-   <td><input [(ngModel)]="atividade.data" ></td>
+   <td><label>Data Inicial</label></td>
+   <td><input [(ngModel)]="atividade.datainicial" ></td>
+</tr>
+<tr>
+   <td><label>Data Final</label></td>
+   <td><input [(ngModel)]="atividade.datafinal" ></td>
 </tr>
 </table>
 
@@ -40,14 +44,16 @@
    <th>Profissional</th>
    <th>Participantes</th>
    <th>Local</th>
-   <th>Data</th>
+   <th>Data Inicial</th>
+   <th>Data Final</th>
 </tr>
 <tr *ngFor="let a of atividades">
    <td>{{a.atividade}}</td>
    <td>{{a.profissional}}</td>
    <td>{{a.participantes}}</td>
    <td>{{a.local}}</td>
-   <td>{{a.data}}</td>
+   <td>{{a.datainicial}}</td>
+   <td>{{a.datafinal}}</td>
 </tr>
 </table>
 
