@@ -1,55 +1,55 @@
-//alterar pra prontuário
+
 import { Injectable }    from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
-import { Aluno } from './aluno';
+import { Prontuario } from './prontuario';
 
 @Injectable()
-export class AlunoService {
+export class ProntuarioService {
 
   private headers = new Headers({'Content-Type': 'application/json'});
   private taURL = 'http://localhost:3000';
 
   constructor(private http: Http) { }
 
-  criar(aluno: Aluno): Promise<Aluno> {
-    return this.http.post(this.taURL + "/aluno",JSON.stringify(aluno), {headers: this.headers})
+  criar(prontuario: Prontuario): Promise<Prontuario> {
+    return this.http.post(this.taURL + "/prontuario",JSON.stringify(prontuario), {headers: this.headers})
            .toPromise()
            .then(res => {
-              if (res.json().success) {return aluno;} else {return null;}
+              if (res.json().success) {return prontuario;} else {return null;}
            })
            .catch(this.tratarErro);
   }
 
-  remover(aluno: Aluno): Promise<Aluno>{//recebe cpf:string
+  remover(prontuario: Prontuario): Promise<Prontuario>{//recebe cpf:string
     //=======================AQuI
-    return this.http.delete(this.taURL + "/aluno",{headers: this.headers, body: JSON.stringify(aluno)})//AQUI
+    return this.http.delete(this.taURL + "/prontuario",{headers: this.headers, body: JSON.stringify(prontuario)})//AQUI
          .toPromise()
          .then(res => {
-            if (res.json().success) {return aluno;} else {return null;}
+            if (res.json().success) {return prontuario;} else {return null;}
          })
          .catch(this.tratarErro);
          //=============================
   }
-  atualizar(aluno: Aluno): Promise<Aluno> {
-    return this.http.put(this.taURL + "/aluno",JSON.stringify(aluno), {headers: this.headers})
+  atualizar(prontuario: Prontuario): Promise<Prontuario> {
+    return this.http.put(this.taURL + "/prontuario",JSON.stringify(prontuario), {headers: this.headers})
          .toPromise()
          .then(res => {
-            if (res.json().success) {return aluno;} else {return null;}
+            if (res.json().success) {return prontuario;} else {return null;}
          })
          .catch(this.tratarErro);
   }
 
-  getAlunos(): Promise<Aluno[]> {
-    return this.http.get(this.taURL + "/alunos")
+  getProntuarios(): Promise<Prontuario[]> {
+    return this.http.get(this.taURL + "/prontuarios")
              .toPromise()
-             .then(res => res.json() as Aluno[])
+             .then(res => res.json() as Prontuario[])
              .catch(this.tratarErro);
   }
 
   private tratarErro(erro: any): Promise<any>{
-    console.error('Acesso mal sucedido ao serviço de alunos',erro);
+    console.error('Acesso mal sucedido ao serviço de prontuarios',erro);
     return Promise.reject(erro.message || erro);
   }
 }

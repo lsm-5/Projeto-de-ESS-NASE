@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { NgModule } from '@angular/core';
 
-import { Aluno } from './aluno';
-import { AlunoService } from './aluno.service';
+import { Prontuario } from './prontuario';
+import { ProntuarioService } from './prontuario.service';
 
 @Component({
   selector: 'app-root',
@@ -10,31 +10,31 @@ import { AlunoService } from './aluno.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-   constructor(private alunoService: AlunoService) {}
+   constructor(private prontuarioService: ProntuarioService) {}
 
-   aluno: Aluno = new Aluno();
-   alunos: Aluno[] = [];
-   loginduplicado: boolean = false;
+   prontuario: Prontuario = new Prontuario();
+   prontuarios: Prontuario[] = [];
+   //loginduplicado: boolean = false;
 
 
-   criarAluno(a: Aluno): void {
-     if(this.alunoService.criar(a)){
-      this.alunos.push(a);
-      this.aluno = new Aluno();
+   criarProntuario(a: Prontuario): void {
+     if(this.prontuarioService.criar(a)){
+      this.prontuarios.push(a);
+      this.prontuario = new Prontuario();
       }else{
-         this.loginduplicado = true;
+      //   this.loginduplicado = true;
       }
    }
-   removerAluno(aluno:Aluno): void{
+   removerProntuario(prontuario:Prontuario): void{
       //========================aqui
-      if(this.alunoService.remover(aluno)){
-         this.alunos = this.alunos.filter(b => b.cpf != aluno.cpf);
-         this.aluno = new Aluno();
+      if(this.prontuarioService.remover(prontuario)){
+         this.prontuarios = this.prontuarios.filter(b => b.cpf != prontuario.cpf);
+         this.prontuario = new Prontuario();
       }
       //==============================
    }
    onMove(): void {
-      this.loginduplicado = false;
+   //   this.loginduplicado = false;
    }
 
 }

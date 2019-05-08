@@ -1,27 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { NgModule } from '@angular/core';
 
-import { Aluno } from './aluno';
-import { AlunoService } from './aluno.service';
+import { Prontuario } from './prontuario';
+import { ProntuarioService } from './prontuario.service';
 
 @Component({
-  selector: 'metas',
-  templateUrl: './metas.component.html',
-  styleUrls: ['./metas.component.css']
+  selector: 'busca',
+  templateUrl: './busca.component.html',
+  styleUrls: ['./busca.component.css']
 })
-export class MetasComponent implements OnInit {
-   constructor(private alunoService: AlunoService) {}
+export class BuscaProntuarioComponent implements OnInit {
+   constructor(private prontuarioService: ProntuarioService) {}
 
-   alunos: Aluno[];
+   prontuarios: Prontuario[];
 
-   atualizarAluno(aluno: Aluno): void {
-      this.alunoService.atualizar(aluno)
+   atualizarProntuario(prontuario: Prontuario): void {
+      this.prontuarioService.atualizar(prontuario)
          .catch(erro => alert(erro));
    }
 
    ngOnInit(): void {
-      this.alunoService.getAlunos()
-         .then(alunos => this.alunos = alunos)
+      this.prontuarioService.getProntuarios()
+         .then(prontuarios => this.prontuarios = prontuarios)
          .catch(erro => alert(erro));
    }
 

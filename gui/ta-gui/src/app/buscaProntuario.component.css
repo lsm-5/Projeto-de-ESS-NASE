@@ -12,12 +12,12 @@ tr:hover {
   background-color: #cce6ff;
 }
 
-.meta {
+.busca {
   text-align: center;
   width: 20px;
 }
 
-.meta input {
+.busca input {
   border: none;
   width: 40px;
 }

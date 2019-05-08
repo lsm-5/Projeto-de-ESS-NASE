@@ -1,10 +1,10 @@
 //alterar pra prontuário
-export class Aluno {
+export class Prontuario {
     nome: string;
     cpf: string;
     email: string;
     github : string;
-    metas: Map<string,string>;
+    buscaprontuarios: Map<string,string>;
   
     constructor() {
       this.clean();
@@ -15,28 +15,28 @@ export class Aluno {
       this.cpf = "";
       this.email = "";
       this.github = "";
-      this.metas = new Map<string,string>();
+      this.buscaprontuarios = new Map<string,string>();
     }
   
-    clone(): Aluno {
-      var aluno: Aluno = new Aluno();
-      aluno.metas = new Map<string,string>();
-      aluno.copyFrom(this);
-      return aluno;
+    clone(): Prontuario {
+      var prontuario: Prontuario = new Prontuario();
+      prontuario.buscaprontuarios = new Map<string,string>();
+      prontuario.copyFrom(this);
+      return prontuario;
     }
   
-    copyFrom(from: Aluno): void {
+    copyFrom(from: Prontuario): void {
       this.nome = from.nome;
       this.cpf = from.cpf;
       this.email = from.email;
       this.github = from.github;
-      this.copyMetasFrom(from.metas);
+      this.copyMetasFrom(from.buscaprontuarios);
     }
   
     copyMetasFrom(from: Map<string,string>): void {
-      this.metas = new Map<string,string>();
+      this.buscaprontuarios = new Map<string,string>();
       for (let key in from) {
-        this.metas[key] = from[key];
+        this.buscaprontuarios[key] = from[key];
       }
     }
   }

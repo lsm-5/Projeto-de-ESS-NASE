@@ -1,11 +1,11 @@
-.alunos {
+.prontuario {
     margin: 0 0 2em 0;
     list-style-type: none;
     padding: 0;
     width: 15em;
   }
    
-  .alunos li {
+  .prontuario li {
     cursor: pointer;
     position: relative;
     left: 0;

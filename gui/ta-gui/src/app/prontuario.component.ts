@@ -1,43 +1,43 @@
-//alterar pra prontuario
+
 import { Component, OnInit } from '@angular/core';
 import { NgModule } from '@angular/core';
 
-import { Aluno } from './aluno';
-import { AlunoService } from './aluno.service';
+import { Prontuario } from './prontuario';
+import { ProntuarioService } from './prontuario.service';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './alunos.component.html',
-  styleUrls: ['./alunos.component.css']
+  templateUrl: './prontuarios.component.html',
+  styleUrls: ['./prontuarios.component.css']
 })
-export class AlunosComponent implements OnInit {
-   constructor(private alunoService: AlunoService) {}
+export class ProntuarioComponent implements OnInit {
+   constructor(private prontuarioService: ProntuarioService) {}
 
-   aluno: Aluno = new Aluno();
-   alunos: Aluno[];
+   prontuario: Prontuario = new Prontuario();
+   prontuarios: Prontuario[];
    loginduplicado: boolean = false;
 
    
-   criarAluno(a: Aluno): void {
-      this.alunoService.criar(a)
+   criarProntuario(a: Prontuario): void {
+      this.prontuarioService.criar(a)
       .then(ab => {
                if (ab) {
-                  this.alunos.push(ab);
-                  this.aluno = new Aluno();
+                  this.prontuarios.push(ab);
+                  this.prontuario = new Prontuario();
                }else{
                   this.loginduplicado=true;
-                  this.aluno = new Aluno();
+                  this.prontuario = new Prontuario();
                }
             })
       .catch(erro => alert(erro));
    }
-   removerAluno(aluno : Aluno):void{
+   removerProntuario(prontuario : Prontuario):void{
       //============aqui
-      this.alunoService.remover(aluno)
+      this.prontuarioService.remover(prontuario)
       .then(ab => {
                if (ab) {
-                  this.alunos = this.alunos.filter(b => b.cpf != ab.cpf);
-                  this.aluno = new Aluno();
+                  this.prontuarios = this.prontuarios.filter(b => b.cpf != ab.cpf);
+                  this.prontuario = new Prontuario();
                }
             })
       .catch(erro => alert(erro));
@@ -49,8 +49,8 @@ export class AlunosComponent implements OnInit {
    }
 
    ngOnInit(): void {
-     this.alunoService.getAlunos()
-         .then(as => this.alunos = as)
+     this.prontuarioService.getProntuarios()
+         .then(as => this.prontuarios = as)
          .catch(erro => alert(erro));
    }
 

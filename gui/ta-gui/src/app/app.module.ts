@@ -5,15 +5,15 @@ import { RouterModule }   from '@angular/router';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { MetasComponent } from './metas.component';
-import { AlunosComponent } from './alunos.component';
-import { AlunoService } from './aluno.service';
+import { BuscaProntuarioComponent } from './buscaProntuario.component';
+import { ProntuarioComponent } from './prontuario.component';
+import { ProntuarioService } from './prontuario.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MetasComponent,
-    AlunosComponent
+    BuscaProntuarioComponent,
+    ProntuarioComponent
   ],
   imports: [
     BrowserModule,
@@ -21,16 +21,16 @@ import { AlunoService } from './aluno.service';
     HttpModule, 
     RouterModule.forRoot([
       {
-        path: 'metas',
-        component: MetasComponent
+        path: 'buscaProntuario',
+        component: BuscaProntuarioComponent
       },
       {
-        path: 'alunos',
-        component: AlunosComponent
+        path: 'prontuario',
+        component: ProntuarioComponent
       }
     ])
   ],
-  providers: [AlunoService],
+  providers: [ProntuarioService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
