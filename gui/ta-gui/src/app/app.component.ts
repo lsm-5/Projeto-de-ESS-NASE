@@ -15,6 +15,7 @@ export class AppComponent {
    atividade: AtividadeEmCampo = new AtividadeEmCampo();
    atividades: AtividadeEmCampo[] = [];
    atividadeduplicada: boolean = false;
+   atividadeinexistente: boolean = false;
 
    criarAtividade(a: AtividadeEmCampo): void {
      if (this.atividadeService.criar(a)) {
@@ -25,6 +26,19 @@ export class AppComponent {
      }
    }
 
+   alterarAtividade(b: AtividadeEmCampo):void{
+    this.atividadeService.atualizar(b)
+    .then(ba => {
+       if (ba) {
+          var result: AtividadeEmCampo = this.atividades.find(a => a.atividade == ba.atividade);
+          if (result) result.copyFrom(ba);
+       }else{
+          this.atividadeinexistente = true;
+       }
+    })
+    .catch(erro => alert(erro));
+ }
+
    removerAtividade(a: AtividadeEmCampo):void{
       if(this.atividadeService.remover(a)){
         this.atividades = this.atividades.filter(b=>b.atividade != a.atividade);
@@ -33,6 +47,7 @@ export class AppComponent {
    }
    onMove(): void {
       this.atividadeduplicada = false;
+      this.atividadeinexistente = false;
    }
 
 }

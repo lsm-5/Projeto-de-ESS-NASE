@@ -27,10 +27,15 @@ class CadastroDeAtividades {
         }
     }
     atualizar(atividade) {
-        var result = this.atividades.find(a => a.atividade == atividade.atividade);
-        if (result)
-            result.copyFrom(atividade);
-        return result;
+        if (!this.atividadeNaoCadastrada(atividade.atividade)) {
+            var result = this.atividades.find(a => a.atividade == atividade.atividade);
+            if (result)
+                result.copyFrom(atividade);
+            return result;
+        }
+        else {
+            return null;
+        }
     }
     getAtividades() {
         return this.atividades;

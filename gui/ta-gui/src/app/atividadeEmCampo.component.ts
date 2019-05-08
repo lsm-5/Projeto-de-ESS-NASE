@@ -15,6 +15,7 @@ export class AtividadeEmCampoComponent implements OnInit {
    atividade: AtividadeEmCampo = new AtividadeEmCampo();
    atividades: AtividadeEmCampo[];
    atividadeduplicada: boolean = false;
+   atividadeinexistente: boolean = false;
 
    criarAtividade(a: AtividadeEmCampo): void {
      this.atividadeService.criar(a)
@@ -35,6 +36,8 @@ export class AtividadeEmCampoComponent implements OnInit {
          if (ba) {
             var result: AtividadeEmCampo = this.atividades.find(a => a.atividade == ba.atividade);
             if (result) result.copyFrom(ba);
+         }else{
+            this.atividadeinexistente = true;
          }
       })
       .catch(erro => alert(erro));
@@ -55,6 +58,7 @@ export class AtividadeEmCampoComponent implements OnInit {
 
    onMove(): void {
       this.atividadeduplicada = false;
+      this.atividadeinexistente = false;
    }
 
    ngOnInit(): void {

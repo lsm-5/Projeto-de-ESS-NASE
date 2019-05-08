@@ -11,8 +11,13 @@
 <tr>
    <td><label>Profissional </label></td>
    <td><input [(ngModel)]="atividade.profissional" ></td>
+   <td></td>
+   <td></td>
    <td *ngIf="atividadeduplicada">
      Já existe uma atividade em campo com esse nome.
+   </td>
+   <td *ngIf="atividadeinexistente">
+      Não existe nenhuma atividade em campo com este nome.
    </td>
 </tr>
 <tr>
