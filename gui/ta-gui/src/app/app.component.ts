@@ -14,25 +14,25 @@ export class AppComponent {
 
    atividade: AtividadeEmCampo = new AtividadeEmCampo();
    atividades: AtividadeEmCampo[] = [];
-   //cpfLoginduplicado: boolean = false;
+   atividadeduplicada: boolean = false;
 
    criarAtividade(a: AtividadeEmCampo): void {
      if (this.atividadeService.criar(a)) {
        this.atividades.push(a);
        this.atividade = new AtividadeEmCampo();
      } else {
-       //this.cpfLoginduplicado = true;
+       this.atividadeduplicada = true;
      }
    }
 
    removerAtividade(a: AtividadeEmCampo):void{
       if(this.atividadeService.remover(a)){
-        //this.atividades = this.atividades.filter(b=>b.cpf != a.cpf);
+        this.atividades = this.atividades.filter(b=>b.atividade != a.atividade);
         this.atividade = new AtividadeEmCampo();
       }                                     
    }
    onMove(): void {
-      //this.cpfLoginduplicado = false;
+      this.atividadeduplicada = false;
    }
 
 }

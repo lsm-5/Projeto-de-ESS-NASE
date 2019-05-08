@@ -10,8 +10,8 @@
 <tr>
    <td><label>Profissional </label></td>
    <td><input [(ngModel)]="atividade.profissional" ></td>
-   <td *ngIf="cpfLoginduplicado">
-     Já existe um aluno com esse login ou CPF
+   <td *ngIf="atividadeduplicada">
+     Já existe uma atividade em campo com esse nome.
    </td>
 </tr>
 <tr>
