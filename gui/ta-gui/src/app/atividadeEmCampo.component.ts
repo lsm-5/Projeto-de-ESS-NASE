@@ -13,12 +13,14 @@ export class AtividadeEmCampoComponent implements OnInit {
    constructor(private atividadeService: AtividadeEmCampoService) {}
 
    atividade: AtividadeEmCampo = new AtividadeEmCampo();
+   atividadeCompleta: AtividadeEmCampo = new AtividadeEmCampo();
    atividades: AtividadeEmCampo[];
    atividadesbusca: AtividadeEmCampo[];
    atividadeduplicada: boolean = false;
    atividadeinexistente: boolean = false;
    atividadeBuscaLigado: boolean = false;
    atividadeinexistentebusca: boolean = false;
+   verMaisLigado: boolean = false;
 
    criarAtividade(a: AtividadeEmCampo): void {
      this.atividadeService.criar(a)
@@ -55,6 +57,15 @@ export class AtividadeEmCampoComponent implements OnInit {
          }
       })
       .catch(erro => alert(erro));
+   }
+
+   verMais(a:String):void{
+      this.verMaisLigado = true;
+      this.atividadeCompleta = this.atividades.find(x=>x.atividade == a);
+   }
+
+   verMenos():void{
+      this.verMaisLigado = false;
    }
 
    buscarAtividade(a:AtividadeEmCampo):void{

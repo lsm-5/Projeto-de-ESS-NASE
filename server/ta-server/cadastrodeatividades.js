@@ -45,9 +45,6 @@ class CadastroDeAtividades {
     getAtividades() {
         return this.atividades;
     }
-    getAtividadesBuscadas() {
-        return this.buscaatividades;
-    }
 }
 exports.CadastroDeAtividades = CadastroDeAtividades;
 //# sourceMappingURL=cadastrodeatividades.js.map

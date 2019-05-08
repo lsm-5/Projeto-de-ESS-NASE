@@ -54,16 +54,39 @@
    <tr *ngFor="let a of atividades">
       <td>{{a.atividade}}</td>
       <td>{{a.profissional}}</td>
-      <td>{{a.participantes}}</td>
+      <td>{{a.participantes|slice:0:10}}...<button (click)="verMais(a.atividade)">+</button></td>
       <td>{{a.local}}</td>
       <td>{{a.datainicial}}</td>
       <td>{{a.datafinal}}</td>
    </tr>
 </table>
 
+<td *ngIf=verMaisLigado>
+   <table>
+         <td><h1><label>Visão Compĺeta da Atividade</label></h1></td>
+         <tr>
+            <th>Atividade em Campo</th>
+            <th>Profissional</th>
+            <th>Participantes</th>
+            <th>Local</th>
+            <th>Data Inicial</th>
+            <th>Data Final</th>
+         </tr>
+         <tr>
+            <td>{{atividadeCompleta.atividade}}</td>
+            <td>{{atividadeCompleta.profissional}}</td>
+            <td>{{atividadeCompleta.participantes}}</td>
+            <td>{{atividadeCompleta.local}}</td>
+            <td>{{atividadeCompleta.datainicial}}</td>
+            <td>{{atividadeCompleta.datafinal}}</td>
+            <td><button (click)="verMenos()">Fechar</button></td>
+         </tr>
+   </table>
+</td>
+
 <td *ngIf=atividadeBuscaLigado>
    <table>
-         <td><label>Resultado da Busca</label></td>
+         <td><h1><label>Resultado da Busca</label></h1></td>
          <tr *ngIf="atividadesbusca.length > 0">
             <th>Atividade em Campo</th>
             <th>Profissional</th>

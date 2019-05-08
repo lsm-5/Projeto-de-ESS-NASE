@@ -45,8 +45,4 @@ export class CadastroDeAtividades {
   getAtividades(): AtividadeEmCampo[] {
     return this.atividades;
   }
-
-  getAtividadesBuscadas(): AtividadeEmCampo[]{
-    return this.buscaatividades;
-  }
 }

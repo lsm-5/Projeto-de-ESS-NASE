@@ -36,8 +36,10 @@ app.post('/buscaAtividades', function (req: express.Request, res: express.Respon
   var atividade : AtividadeEmCampo = <AtividadeEmCampo> req.body; 
   console.log(atividade);
   var atividadesBuscadas = cadastro.busca(atividade);
+  console.log(atividadesBuscadas);
   if (atividadesBuscadas.length>0) {
-    res.send(JSON.stringify(cadastro.getAtividadesBuscadas()));
+    console.log(JSON.stringify(atividadesBuscadas));
+    res.send(JSON.stringify(atividadesBuscadas));
   } else {
     res.send({"failure": "A atividade em campo não pode ser cadastrado"});
   }
