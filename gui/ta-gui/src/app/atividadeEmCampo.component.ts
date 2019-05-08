@@ -29,6 +29,17 @@ export class AtividadeEmCampoComponent implements OnInit {
         .catch(erro => alert(erro));
    }
 
+   alterarAtividade(b: AtividadeEmCampo):void{
+      this.atividadeService.atualizar(b)
+      .then(ba => {
+         if (ba) {
+            var result: AtividadeEmCampo = this.atividades.find(a => a.atividade == ba.atividade);
+            if (result) result.copyFrom(ba);
+         }
+      })
+      .catch(erro => alert(erro));
+   }
+
    removerAtividade(a:AtividadeEmCampo):void{
       this.atividadeService.remover(a)
       .then(a=>{
@@ -40,6 +51,7 @@ export class AtividadeEmCampoComponent implements OnInit {
       .catch(erro => alert(erro));
    }
 
+   
 
    onMove(): void {
       this.atividadeduplicada = false;

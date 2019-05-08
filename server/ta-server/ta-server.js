@@ -20,13 +20,10 @@ app.get('/atividades', function (req, res) {
 app.post('/atividade', function (req, res) {
     var atividade = req.body;
     atividade = cadastro.criar(atividade);
-    console.log(atividade);
     if (atividade) {
-        console.log("funcionou");
         res.send({ "success": "A atividade em campo foi cadastrado com sucesso" });
     }
     else {
-        console.log("falhou");
         res.send({ "failure": "A atividade em campo não pode ser cadastrado" });
     }
 });

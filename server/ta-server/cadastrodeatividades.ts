@@ -28,6 +28,7 @@ export class CadastroDeAtividades {
 
   atualizar(atividade: AtividadeEmCampo): AtividadeEmCampo {
     var result: AtividadeEmCampo = this.atividades.find(a => a.atividade == atividade.atividade);
+    if (result) result.copyFrom(atividade);
     return result;
   }
 

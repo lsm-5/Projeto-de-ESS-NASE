@@ -28,6 +28,8 @@ class CadastroDeAtividades {
     }
     atualizar(atividade) {
         var result = this.atividades.find(a => a.atividade == atividade.atividade);
+        if (result)
+            result.copyFrom(atividade);
         return result;
     }
     getAtividades() {
