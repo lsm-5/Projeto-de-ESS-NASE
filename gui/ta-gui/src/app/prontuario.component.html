@@ -4,35 +4,35 @@
 <table>
 <tr>
    <td><label>Nome </label></td>
-   <td><input [(ngModel)]="aluno.nome" name="namebox"></td>
-   <td><button (click)="criarAluno(aluno)">Adicionar</button></td>
-   <td><button (click)="removerAluno(aluno)">Remover</button></td>
+   <td><input [(ngModel)]="prontuario.nome" name="namebox"></td>
+   <td><button (click)="criarProntuario(prontuario)">Adicionar</button></td>
+   <td><button (click)="removerProntuario(prontuario)">Remover</button></td>
 </tr>
 <tr>
    <td><label>CPF </label></td>
-   <td><input [(ngModel)]="aluno.cpf" name="cpfbox"></td>
+   <td><input [(ngModel)]="prontuario.cpf" name="cpfbox"></td>
    <td *ngIf="loginduplicado">
-     Já existe um aluno com esse login
+     Já existe um prontuario com esse login
    </td>
 </tr>
 <tr>
    <td><label>github </label></td>
-   <td><input [(ngModel)]="aluno.github" ></td>
+   <td><input [(ngModel)]="prontuario.github" ></td>
 </tr>
 <tr>
    <td><label>e-mail </label></td>
-   <td><input [(ngModel)]="aluno.email" ></td>
+   <td><input [(ngModel)]="prontuario.email" ></td>
 </tr>
 </table>
 
 <table>
-<tr *ngIf="alunos.length > 0">
+<tr *ngIf="prontuarios.length > 0">
    <th>Nome</th>
    <th>CPF</th>
    <th>github</th>
    <th>e-mail</th>
 </tr>
-<tr *ngFor="let a of alunos" name="alunolist">
+<tr *ngFor="let a of prontuarios" name="prontuariolist">
    <td name="nomelist">{{a.nome}}</td>
    <td name="cpflist">{{a.cpf}}</td>
    <td>{{a.github}}</td>

@@ -5,7 +5,7 @@ import { RouterModule }   from '@angular/router';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { BuscaProntuarioComponent } from './buscaProntuario.component';
+import { BuscaProntuarioComponent } from './busca.component';
 import { ProntuarioComponent } from './prontuario.component';
 import { ProntuarioService } from './prontuario.service';
 
@@ -21,7 +21,7 @@ import { ProntuarioService } from './prontuario.service';
     HttpModule, 
     RouterModule.forRoot([
       {
-        path: 'buscaProntuario',
+        path: 'busca',
         component: BuscaProntuarioComponent
       },
       {

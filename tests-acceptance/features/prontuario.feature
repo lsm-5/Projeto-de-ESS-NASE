@@ -4,6 +4,7 @@ Scenario: Registro de prontuário por um médico ao fim de uma consulta.
 Given Eu estou na página “novo registro”
 Given Eu preencho o campo Aluno com “Adriano Filho”
 Given Eu preencho os campos de horário e data com “1000” e “10/10/18”, respectivamente
+Given Eu preencho o campo de comentários com "ele tem problemas"
 When Eu seleciono a opção “Finalizar”
 Then Eu vejo uma mensagem de confirmação de registro
 

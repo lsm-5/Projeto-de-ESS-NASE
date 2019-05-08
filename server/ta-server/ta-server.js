@@ -1,11 +1,11 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const express = require("express");
-const bodyParser = require("body-parser");
-const cadastrodealunos_1 = require("./cadastrodealunos");
+exports.__esModule = true;
+var express = require("express");
+var bodyParser = require("body-parser");
+var cadastroprontuario_1 = require("./cadastroprontuario");
 var app = express();
 exports.app = app;
-var cadastro = new cadastrodealunos_1.CadastroDeAlunos();
+var cadastro = new cadastroprontuario_1.CadastroDeProntuarios();
 var allowCrossDomain = function (req, res, next) {
     res.header('Access-Control-Allow-Origin', "*");
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
@@ -14,39 +14,38 @@ var allowCrossDomain = function (req, res, next) {
 };
 app.use(allowCrossDomain);
 app.use(bodyParser.json());
-app.get('/alunos', function (req, res) {
-    res.send(JSON.stringify(cadastro.getAlunos()));
+app.get('/prontuarios', function (req, res) {
+    res.send(JSON.stringify(cadastro.getProntuarios()));
 });
-app.delete('/aluno', function (req, res) {
+app["delete"]('/prontuario', function (req, res) {
     //====================AQUI
     var cpf = req.body;
-    var alunos = cadastro.remover(cpf); //retorna array de alunos
-    res.send({ "success": "O aluno foi removido com sucesso" });
+    var prontuarios = cadastro.remover(cpf); //retorna array de prontuarios
+    res.send({ "success": "O prontuario foi removido com sucesso" });
     //================================
 });
-app.post('/aluno', function (req, res) {
-    var aluno = req.body; //verificar se é mesmo Aluno!
-    console.log(aluno);
-    console.log(JSON.stringify(aluno));
-    aluno = cadastro.criar(aluno);
-    if (aluno) {
-        res.send({ "success": "O aluno foi cadastrado com sucesso" });
+app.post('/prontuario', function (req, res) {
+    var prontuario = req.body; //verificar se é mesmo Prontuario!
+    console.log(prontuario);
+    console.log(JSON.stringify(prontuario));
+    prontuario = cadastro.criar(prontuario);
+    if (prontuario) {
+        res.send({ "success": "O prontuario foi cadastrado com sucesso" });
     }
     else {
-        res.send({ "failure": "O aluno não pode ser cadastrado" });
+        res.send({ "failure": "O prontuario não pode ser cadastrado" });
     }
 });
-app.put('/aluno', function (req, res) {
-    var aluno = req.body;
-    aluno = cadastro.atualizar(aluno);
-    if (aluno) {
-        res.send({ "success": "O aluno foi atualizado com sucesso" });
+app.put('/prontuario', function (req, res) {
+    var prontuario = req.body;
+    prontuario = cadastro.atualizar(prontuario);
+    if (prontuario) {
+        res.send({ "success": "O prontuario foi atualizado com sucesso" });
     }
     else {
-        res.send({ "failure": "O aluno não pode ser atualizado" });
+        res.send({ "failure": "O prontuario não pode ser atualizado" });
     }
 });
 app.listen(3000, function () {
     console.log('Example app listening on port 3000!');
 });
-//# sourceMappingURL=ta-server.js.map

@@ -7,8 +7,8 @@ import { ProntuarioService } from './prontuario.service';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './prontuarios.component.html',
-  styleUrls: ['./prontuarios.component.css']
+  templateUrl: './prontuario.component.html',
+  styleUrls: ['./prontuario.component.css']
 })
 export class ProntuarioComponent implements OnInit {
    constructor(private prontuarioService: ProntuarioService) {}
