@@ -12,7 +12,7 @@ class CadastroDeAtividades {
             result.copyFrom(atividade);
             this.atividades.push(result);
         }
-        return atividade;
+        return result;
     }
     remover(atividade) {
         this.atividades = this.atividades.filter(a => a.atividade != atividade.atividade);

@@ -23,7 +23,7 @@ export class AtividadeEmCampoComponent implements OnInit {
               this.atividades.push(ab);
               this.atividade = new AtividadeEmCampo();
            } else {
-               this.atividadeduplicada = true;
+              this.atividadeduplicada = true;
            }
         })
         .catch(erro => alert(erro));

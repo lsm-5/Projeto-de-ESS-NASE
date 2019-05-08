@@ -10,7 +10,7 @@ export class CadastroDeAtividades {
       result.copyFrom(atividade);
       this.atividades.push(result);
     }
-    return atividade;
+    return result;
   }
 
   remover(atividade:AtividadeEmCampo): boolean {
