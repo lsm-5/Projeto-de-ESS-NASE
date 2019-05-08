@@ -40,7 +40,9 @@ export class AtividadeEmCampoComponent implements OnInit {
       .then(ba => {
          if (ba) {
             var result: AtividadeEmCampo = this.atividades.find(a => a.atividade == ba.atividade);
-            if (result) result.copyFrom(ba);
+            if (result){
+               result.copyFrom(ba);
+            } 
          }else{
             this.atividadeinexistente = true;
          }
