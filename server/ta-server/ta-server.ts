@@ -21,13 +21,13 @@ app.use(bodyParser.json());
 app.get('/prontuarios', function (req, res) {
 		res.send(JSON.stringify(cadastro.getProntuarios()));
 		})
-app.delete('/prontuario', function(req: express.Request, res: express.Response){
-		//====================AQUI
-		var cpf = req.body;
-		var prontuarios = cadastro.remover(cpf);//retorna array de prontuarios
-		res.send({ "success": "O prontuario foi removido com sucesso" });
-		//================================
-		});
+// app.delete('/prontuario', function(req: express.Request, res: express.Response){
+// 		//====================AQUI
+// 		var cpf = req.body;
+// 		var prontuarios = cadastro.remover(cpf);//retorna array de prontuarios
+// 		res.send({ "success": "O prontuario foi removido com sucesso" });
+// 		//================================
+// 		});
 
 app.post('/prontuario', function (req: express.Request, res: express.Response) {
 		var prontuario: Prontuario = <Prontuario> req.body; //verificar se é mesmo Prontuario!
