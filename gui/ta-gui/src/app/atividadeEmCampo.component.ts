@@ -14,8 +14,11 @@ export class AtividadeEmCampoComponent implements OnInit {
 
    atividade: AtividadeEmCampo = new AtividadeEmCampo();
    atividades: AtividadeEmCampo[];
+   atividadesbusca: AtividadeEmCampo[];
    atividadeduplicada: boolean = false;
    atividadeinexistente: boolean = false;
+   atividadeBuscaLigado: boolean = false;
+   atividadeinexistentebusca: boolean = false;
 
    criarAtividade(a: AtividadeEmCampo): void {
      this.atividadeService.criar(a)
@@ -54,11 +57,27 @@ export class AtividadeEmCampoComponent implements OnInit {
       .catch(erro => alert(erro));
    }
 
-   
+   buscarAtividade(a:AtividadeEmCampo):void{
+      this.atividadeService.buscar(a)
+      .then(ab => {
+         if (ab) {
+            this.atividadesbusca = ab;
+            this.atividadeBuscaLigado = true;
+         } else {
+            this.atividadeBuscaLigado = true;
+            this.atividadeinexistentebusca = true;
+         }
+      })
+      .catch(erro => alert(erro));
+   }
+   cancelarBuscaAtividade():void{
+      this.atividadeBuscaLigado = false;
+   }
 
    onMove(): void {
       this.atividadeduplicada = false;
       this.atividadeinexistente = false;
+      this.atividadeinexistentebusca = false;
    }
 
    ngOnInit(): void {

@@ -4,6 +4,7 @@ const atividadeEmCampo_1 = require("../../gui/ta-gui/src/app/atividadeEmCampo");
 class CadastroDeAtividades {
     constructor() {
         this.atividades = [];
+        this.buscaatividades = [];
     }
     criar(atividade) {
         var result = null;
@@ -37,8 +38,15 @@ class CadastroDeAtividades {
             return null;
         }
     }
+    busca(atividade) {
+        var result = this.atividades.filter(c => c.datainicial >= atividade.datainicial && c.datafinal <= atividade.datafinal);
+        return result;
+    }
     getAtividades() {
         return this.atividades;
+    }
+    getAtividadesBuscadas() {
+        return this.buscaatividades;
     }
 }
 exports.CadastroDeAtividades = CadastroDeAtividades;

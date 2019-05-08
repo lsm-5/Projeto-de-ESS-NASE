@@ -11,13 +11,16 @@
 <tr>
    <td><label>Profissional </label></td>
    <td><input [(ngModel)]="atividade.profissional" ></td>
-   <td></td>
-   <td></td>
+   <td><button (click)="buscarAtividade(atividade)">Buscar Atividade</button></td>
+   <td><button (click)="cancelarBuscaAtividade()">Cancelar Buscar por Atividade</button></td>
    <td *ngIf="atividadeduplicada">
      Já existe uma atividade em campo com esse nome.
    </td>
    <td *ngIf="atividadeinexistente">
       Não existe nenhuma atividade em campo com este nome.
+   </td>
+   <td *ngIf="atividadeinexistentebusca">
+      Não existe nenhuma atividade em campo entre estas datas.
    </td>
 </tr>
 <tr>
@@ -38,23 +41,45 @@
 </tr>
 </table>
 
+
 <table>
-<tr *ngIf="atividades.length > 0">
-   <th>Atividade em Campo</th>
-   <th>Profissional</th>
-   <th>Participantes</th>
-   <th>Local</th>
-   <th>Data Inicial</th>
-   <th>Data Final</th>
-</tr>
-<tr *ngFor="let a of atividades">
-   <td>{{a.atividade}}</td>
-   <td>{{a.profissional}}</td>
-   <td>{{a.participantes}}</td>
-   <td>{{a.local}}</td>
-   <td>{{a.datainicial}}</td>
-   <td>{{a.datafinal}}</td>
-</tr>
+   <tr *ngIf="atividades.length > 0">
+      <th>Atividade em Campo</th>
+      <th>Profissional</th>
+      <th>Participantes</th>
+      <th>Local</th>
+      <th>Data Inicial</th>
+      <th>Data Final</th>
+   </tr>
+   <tr *ngFor="let a of atividades">
+      <td>{{a.atividade}}</td>
+      <td>{{a.profissional}}</td>
+      <td>{{a.participantes}}</td>
+      <td>{{a.local}}</td>
+      <td>{{a.datainicial}}</td>
+      <td>{{a.datafinal}}</td>
+   </tr>
 </table>
 
+<td *ngIf=atividadeBuscaLigado>
+   <table>
+         <td><label>Resultado da Busca</label></td>
+         <tr *ngIf="atividadesbusca.length > 0">
+            <th>Atividade em Campo</th>
+            <th>Profissional</th>
+            <th>Participantes</th>
+            <th>Local</th>
+            <th>Data Inicial</th>
+            <th>Data Final</th>
+         </tr>
+         <tr *ngFor="let a of atividadesbusca">
+            <td>{{a.atividade}}</td>
+            <td>{{a.profissional}}</td>
+            <td>{{a.participantes}}</td>
+            <td>{{a.local}}</td>
+            <td>{{a.datainicial}}</td>
+            <td>{{a.datafinal}}</td>
+         </tr>
+   </table>
+</td>
 </html>

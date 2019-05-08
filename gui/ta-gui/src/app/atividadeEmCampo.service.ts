@@ -39,6 +39,14 @@ export class AtividadeEmCampoService {
          .catch(this.tratarErro);
   }
 
+  buscar(atividade: AtividadeEmCampo): Promise<AtividadeEmCampo[]> {
+    return this.http.post(this.taURL + "/buscaAtividades",JSON.stringify(atividade), {headers: this.headers})
+      .toPromise()
+      .then(res => {
+        if (res.json().failure) {return null;} else {return res.json() as AtividadeEmCampo[];}
+      })
+      .catch(this.tratarErro)
+  }
   
   getAtividade(): Promise<AtividadeEmCampo[]> {
     return this.http.get(this.taURL + "/atividades")

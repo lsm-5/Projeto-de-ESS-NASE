@@ -32,6 +32,17 @@ app.post('/atividade', function (req: express.Request, res: express.Response) {
   }
 })
 
+app.post('/buscaAtividades', function (req: express.Request, res: express.Response) {
+  var atividade : AtividadeEmCampo = <AtividadeEmCampo> req.body; 
+  console.log(atividade);
+  var atividadesBuscadas = cadastro.busca(atividade);
+  if (atividadesBuscadas.length>0) {
+    res.send(JSON.stringify(cadastro.getAtividadesBuscadas()));
+  } else {
+    res.send({"failure": "A atividade em campo não pode ser cadastrado"});
+  }
+})
+
 app.put('/atividade', function (req: express.Request, res: express.Response) {
   var atividade: AtividadeEmCampo = <AtividadeEmCampo> req.body;
   atividade = cadastro.atualizar(atividade);

@@ -2,6 +2,7 @@ import { AtividadeEmCampo } from '../../gui/ta-gui/src/app/atividadeEmCampo';
 
 export class CadastroDeAtividades {
   atividades: AtividadeEmCampo[] = [];
+  buscaatividades: AtividadeEmCampo[] = [];
 
   criar(atividade: AtividadeEmCampo): AtividadeEmCampo {
     var result = null;
@@ -34,11 +35,18 @@ export class CadastroDeAtividades {
     }else{
       return null;
     }
+  }
 
-
+  busca(atividade: AtividadeEmCampo): AtividadeEmCampo[]{
+    var result: AtividadeEmCampo [] = this.atividades.filter(c => c.datainicial >= atividade.datainicial && c.datafinal<=atividade.datafinal);
+    return result;
   }
 
   getAtividades(): AtividadeEmCampo[] {
     return this.atividades;
+  }
+
+  getAtividadesBuscadas(): AtividadeEmCampo[]{
+    return this.buscaatividades;
   }
 }
