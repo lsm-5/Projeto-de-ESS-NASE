@@ -15,7 +15,7 @@ export class ProntuarioComponent implements OnInit {
 
    prontuario: Prontuario = new Prontuario();
    prontuarios: Prontuario[];
-   loginduplicado: boolean = false;
+   prontuarioduplicado: boolean = false;
 
    
    criarProntuario(a: Prontuario): void {
@@ -25,27 +25,27 @@ export class ProntuarioComponent implements OnInit {
                   this.prontuarios.push(ab);
                   this.prontuario = new Prontuario();
                }else{
-                  this.loginduplicado=true;
+                  this.prontuarioduplicado=true;
                   this.prontuario = new Prontuario();
                }
             })
       .catch(erro => alert(erro));
    }
-   removerProntuario(prontuario : Prontuario):void{
-      //============aqui
-      this.prontuarioService.remover(prontuario)
-      .then(ab => {
-               if (ab) {
-                  this.prontuarios = this.prontuarios.filter(b => b.cpf != ab.cpf);
-                  this.prontuario = new Prontuario();
-               }
-            })
-      .catch(erro => alert(erro));
-      //=====================
-   }
+   // removerProntuario(prontuario : Prontuario):void{
+   //    //============aqui
+   //    this.prontuarioService.remover(prontuario)
+   //    .then(ab => {
+   //             if (ab) {
+   //                this.prontuarios = this.prontuarios.filter(b => b.cpf != ab.cpf);
+   //                this.prontuario = new Prontuario();
+   //             }
+   //          })
+   //    .catch(erro => alert(erro));
+   //    //=====================
+   // }
 
    onMove(): void {
-      this.loginduplicado = false;
+      this.prontuarioduplicado = false;
    }
 
    ngOnInit(): void {

@@ -22,16 +22,16 @@ export class ProntuarioService {
            .catch(this.tratarErro);
   }
 
-  remover(prontuario: Prontuario): Promise<Prontuario>{//recebe cpf:string
-    //=======================AQuI
-    return this.http.delete(this.taURL + "/prontuario",{headers: this.headers, body: JSON.stringify(prontuario)})//AQUI
-         .toPromise()
-         .then(res => {
-            if (res.json().success) {return prontuario;} else {return null;}
-         })
-         .catch(this.tratarErro);
-         //=============================
-  }
+  // remover(prontuario: Prontuario): Promise<Prontuario>{//recebe cpf:string
+  //   //=======================AQuI
+  //   return this.http.delete(this.taURL + "/prontuario",{headers: this.headers, body: JSON.stringify(prontuario)})//AQUI
+  //        .toPromise()
+  //        .then(res => {
+  //           if (res.json().success) {return prontuario;} else {return null;}
+  //        })
+  //        .catch(this.tratarErro);
+  //        //=============================
+  // }
   atualizar(prontuario: Prontuario): Promise<Prontuario> {
     return this.http.put(this.taURL + "/prontuario",JSON.stringify(prontuario), {headers: this.headers})
          .toPromise()

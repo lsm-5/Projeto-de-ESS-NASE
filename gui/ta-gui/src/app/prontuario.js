@@ -8,28 +8,22 @@ var Prontuario = /** @class */ (function () {
     Prontuario.prototype.clean = function () {
         this.nome = "";
         this.cpf = "";
-        this.email = "";
-        this.github = "";
-        this.buscaprontuarios = new Map();
+        this.horario = "";
+        this.data = "";
+        this.comentario = "";
     };
     Prontuario.prototype.clone = function () {
         var prontuario = new Prontuario();
-        prontuario.buscaprontuarios = new Map();
+        prontuario.comentario = "";
         prontuario.copyFrom(this);
         return prontuario;
     };
     Prontuario.prototype.copyFrom = function (from) {
         this.nome = from.nome;
         this.cpf = from.cpf;
-        this.email = from.email;
-        this.github = from.github;
-        this.copyMetasFrom(from.buscaprontuarios);
-    };
-    Prontuario.prototype.copyMetasFrom = function (from) {
-        this.buscaprontuarios = new Map();
-        for (var key in from) {
-            this.buscaprontuarios[key] = from[key];
-        }
+        this.horario = from.horario;
+        this.data = from.data;
+        //this.copyMetasFrom(from.comentario);
     };
     return Prontuario;
 }());

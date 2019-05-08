@@ -3,42 +3,51 @@
 
 <table>
 <tr>
-   <td><label>Nome </label></td>
+   <td><label>Nome* </label></td>
    <td><input [(ngModel)]="prontuario.nome" name="namebox"></td>
    <td><button (click)="criarProntuario(prontuario)">Adicionar</button></td>
-   <td><button (click)="removerProntuario(prontuario)">Remover</button></td>
+  <!-- <td><button (click)="removerProntuario(prontuario)">Remover</button></td> -->
 </tr>
 <tr>
-   <td><label>CPF </label></td>
+   <td><label>CPF* </label></td>
    <td><input [(ngModel)]="prontuario.cpf" name="cpfbox"></td>
-   <td *ngIf="loginduplicado">
-     Já existe um prontuario com esse login
+  <!--
+   <td *ngIf="prontuárioduplicado">
+     Já existe um prontuário com esse nome, CPF, data e horário
    </td>
+   -->
 </tr>
 <tr>
-   <td><label>github </label></td>
-   <td><input [(ngModel)]="prontuario.github" ></td>
+   <td><label>Horário* </label></td>
+   <td><input [(ngModel)]="prontuario.horario" ></td>
 </tr>
 <tr>
-   <td><label>e-mail </label></td>
-   <td><input [(ngModel)]="prontuario.email" ></td>
+   <td><label>Data* </label></td>
+   <td><input [(ngModel)]="prontuario.data" ></td>
+</tr>
+
+<tr>
+   <td><label>Comentários </label></td>
+   <td><input [(ngModel)]="prontuario.comentario" ></td>
 </tr>
 </table>
-
+<!--
 <table>
 <tr *ngIf="prontuarios.length > 0">
    <th>Nome</th>
    <th>CPF</th>
-   <th>github</th>
-   <th>e-mail</th>
+   <th>horario</th>
+   <th>Data</th>
+   
 </tr>
 <tr *ngFor="let a of prontuarios" name="prontuariolist">
    <td name="nomelist">{{a.nome}}</td>
    <td name="cpflist">{{a.cpf}}</td>
-   <td>{{a.github}}</td>
-   <td>{{a.email}}</td>
+   <td name="horariolist">{{a.horario}}</td>
+   <td name="datalist">{{a.data}}</td>
+
   
 </tr>
 </table>
-
+-->
 </html>

@@ -2,9 +2,9 @@
 export class Prontuario {
     nome: string;
     cpf: string;
-    email: string;
-    github : string;
-    buscaprontuarios: Map<string,string>;
+    horario: string;
+    data : string;
+    comentario: string;
   
     constructor() {
       this.clean();
@@ -13,14 +13,14 @@ export class Prontuario {
     clean(): void {
       this.nome = "";
       this.cpf = "";
-      this.email = "";
-      this.github = "";
-      this.buscaprontuarios = new Map<string,string>();
+      this.horario = "";
+      this.data = "";
+      this.comentario = "";
     }
   
     clone(): Prontuario {
       var prontuario: Prontuario = new Prontuario();
-      prontuario.buscaprontuarios = new Map<string,string>();
+      prontuario.comentario = "";
       prontuario.copyFrom(this);
       return prontuario;
     }
@@ -28,16 +28,17 @@ export class Prontuario {
     copyFrom(from: Prontuario): void {
       this.nome = from.nome;
       this.cpf = from.cpf;
-      this.email = from.email;
-      this.github = from.github;
-      this.copyMetasFrom(from.buscaprontuarios);
+      this.horario = from.horario;
+      this.data = from.data;
+      //this.copyMetasFrom(from.comentario);
     }
   
-    copyMetasFrom(from: Map<string,string>): void {
-      this.buscaprontuarios = new Map<string,string>();
-      for (let key in from) {
-        this.buscaprontuarios[key] = from[key];
-      }
-    }
+    // copyMetasFrom(from: string): void {
+    //   this.comentario = "";
+    //   for (let key in from) {
+    //     this.comentario[key] = from[key];
+    //   }
+    // }
+  
   }
   

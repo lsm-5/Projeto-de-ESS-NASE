@@ -14,7 +14,7 @@ export class AppComponent {
 
    prontuario: Prontuario = new Prontuario();
    prontuarios: Prontuario[] = [];
-   //loginduplicado: boolean = false;
+   prontuarioduplicado: boolean = false;
 
 
    criarProntuario(a: Prontuario): void {
@@ -22,19 +22,20 @@ export class AppComponent {
       this.prontuarios.push(a);
       this.prontuario = new Prontuario();
       }else{
-      //   this.loginduplicado = true;
+         this.prontuarioduplicado = true;
       }
    }
-   removerProntuario(prontuario:Prontuario): void{
-      //========================aqui
-      if(this.prontuarioService.remover(prontuario)){
-         this.prontuarios = this.prontuarios.filter(b => b.cpf != prontuario.cpf);
-         this.prontuario = new Prontuario();
-      }
-      //==============================
-   }
+   
+   // removerProntuario(prontuario:Prontuario): void{
+   //    //========================aqui
+   //    if(this.prontuarioService.remover(prontuario)){
+   //       this.prontuarios = this.prontuarios.filter(b => b.cpf != prontuario.cpf);
+   //       this.prontuario = new Prontuario();
+   //    }
+   //    //==============================
+   // }
    onMove(): void {
-   //   this.loginduplicado = false;
+      this.prontuarioduplicado = false;
    }
 
 }
