@@ -21,7 +21,7 @@ var CadastroDeProntuarios = /** @class */ (function () {
         return result;
     };
     CadastroDeProntuarios.prototype.prontuarioExiste = function (p) {
-        if (this.prontuarios.find(function (a) { return (a.cpf == p.cpf /* && a.nome == p.nome && a.data == p.data && a.horario == p.horario*/); }))
+        if (this.prontuarios.find(function (a) { return (a.cpf == p.cpf && a.nome == p.nome && a.data == p.data && a.horario == p.horario); }))
             return true;
         else
             return false;
