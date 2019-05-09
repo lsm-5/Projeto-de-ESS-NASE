@@ -16,9 +16,18 @@ export class ProntuarioComponent implements OnInit {
    prontuario: Prontuario = new Prontuario();
    prontuarios: Prontuario[];
    prontuarioduplicado: boolean = false;
+   prontuarioinvalido: boolean = false;
 
-   
+   prontuarioInvalido(p : Prontuario): boolean{//prontuario com algum dado vazio
+      return p.cpf == "" || p.nome == "" || p.data == "" || p.horario == "" ;
+   }
    criarProntuario(a: Prontuario): void {
+      if(this.prontuarioInvalido(a)){
+         this.prontuarioinvalido=true;
+         //this.prontuario = new Prontuario();
+         return;
+      }
+
       this.prontuarioService.criar(a)
       .then(ab => {
                if (ab) {
@@ -46,6 +55,7 @@ export class ProntuarioComponent implements OnInit {
 
    onMove(): void {
       this.prontuarioduplicado = false;
+      this.prontuarioinvalido = false;
    }
 
    ngOnInit(): void {

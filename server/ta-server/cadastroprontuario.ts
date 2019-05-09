@@ -18,7 +18,8 @@ export class CadastroDeProntuarios {
     if(this.prontuarios.find(a => (a.cpf == p.cpf && a.nome == p.nome && a.data == p.data && a.horario == p.horario))) return true;
     else return false;
   }
- 
+  
+
 
   atualizar(prontuario: Prontuario): Prontuario {
     var result: Prontuario = this.prontuarios.find(a => a.cpf == prontuario.cpf);
