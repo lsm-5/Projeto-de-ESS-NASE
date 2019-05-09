@@ -8,7 +8,7 @@ cd ../../
 echo "========tsc no ta-server==========="
 cd server/ta-server/
 npm install @types/express
-tsc
+tsc ta-server.js cadastroprontuario.js
 npm install
 cd ../../
 
