@@ -23,7 +23,7 @@
 
 <tr>
    <td><label>Comentários </label></td>
-   <td><input [(ngModel)]="prontuario.comentario" ></td>
+   <td><input [(ngModel)]="prontuario.comentario" size=20></td><!--aumentar altura da caixa aqui-->
    <td><button (click)="criarProntuario(prontuario)">Registrar Prontuário</button></td>
   <!-- <td><button (click)="removerProntuario(prontuario)">Remover</button></td> -->
   
@@ -36,6 +36,7 @@
 </tr>
 </table>
 
+<!--
 <table>
 <tr *ngIf="prontuarios.length > 0">
    <th>Nome</th>
@@ -49,9 +50,8 @@
    <td name="cpflist">{{a.cpf}}</td>
    <td name="horariolist">{{a.horario}}</td>
    <td name="datalist">{{a.data}}</td>
-
-  
 </tr>
 </table>
+-->
 
 </html>

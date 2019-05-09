@@ -3,24 +3,19 @@
 
 -->
 <table>
-<tr>
-   <th>Nome</th>
-   <th>CPF</th>
-   <th>e-mail</th>
-   <th>github</th>
-   <th>Requisitos</th>
-   <th>Gerência de Configuração</th>
-   <th>Gerência de Projetos</th>
-   <th>Testes</th>
-</tr>
-<tr *ngFor="let a of alunos">
-   <td>{{a.nome}}</td>
-   <td>{{a.cpf}}</td>
-   <td>{{a.email}}</td>
-   <td>{{a.github}}</td>
-   <td class="meta"><input [(ngModel)]="a.metas['requisitos']" (change)="atualizarAluno(a)"></td>
-   <td class="meta"><input [(ngModel)]="a.metas['gerDeConfiguracao']" (change)="atualizarAluno(a)"></td>
-   <td class="meta"><input [(ngModel)]="a.metas['gerDeProjetos']" (change)="atualizarAluno(a)"></td>
-   <td class="meta"><input [(ngModel)]="a.metas['Testes']" (change)="atualizarAluno(a)"></td>
-</tr>
+      <tr>
+         <td><label>Nome </label></td>
+         <td><input [(ngModel)]="buscaprontuario.nome" name="namebox"></td>
+         <td><button (click)="buscarProntuario(prontuario)">Buscar Prontuário</button></td>
 </table>
+<table>
+      <tr *ngIf="prontuarios.length > 0">
+         <th>Nome</th>
+         <th>CPF</th>
+      </tr>
+      <tr *ngFor="let a of prontuarios">
+         <td>{{a.nome}}</td>
+         <td>{{a.cpf}}</td>
+         <td><button (click)="verHistorico(a.nome, a.cpf)">Histórico</button></td>
+      </tr>
+   </table>

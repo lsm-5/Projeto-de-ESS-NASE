@@ -4,7 +4,7 @@
     padding: 0;
     width: 15em;
   }
-   
+  
   .prontuario li {
     cursor: pointer;
     position: relative;
@@ -27,4 +27,11 @@
   }
   button:hover {
     background-color: #cfd8dc;
+  }
+  comment {
+    margin: 0 0 2em 0;
+    list-style-type: none;
+    padding: 0;
+    width: 15em;
+    height: 50em;
   }

@@ -14,8 +14,8 @@ export class BuscaProntuarioComponent implements OnInit {
 
    prontuarios: Prontuario[];
 
-   atualizarProntuario(prontuario: Prontuario): void {
-      this.prontuarioService.atualizar(prontuario)
+   buscarByNameProntuario(prontuario: Prontuario): void {
+      this.prontuarioService.buscarByName(prontuario)
          .catch(erro => alert(erro));
    }
 
