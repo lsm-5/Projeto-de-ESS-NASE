@@ -29,11 +29,8 @@ app.post('/atividade', function (req, res) {
 });
 app.post('/buscaAtividades', function (req, res) {
     var atividade = req.body;
-    console.log(atividade);
     var atividadesBuscadas = cadastro.busca(atividade);
-    console.log(atividadesBuscadas);
     if (atividadesBuscadas.length > 0) {
-        console.log(JSON.stringify(atividadesBuscadas));
         res.send(JSON.stringify(atividadesBuscadas));
     }
     else {

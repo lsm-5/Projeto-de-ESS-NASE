@@ -3,14 +3,14 @@
 <table>
 <tr>
    <td><label>Nome da Atividade em Campo </label></td>
-   <td><input [(ngModel)]="atividade.atividade" ></td>
+   <td><input name="nome" [(ngModel)]="atividade.atividade" ></td>
    <td><button (click)="criarAtividade(atividade)">Adicionar</button></td>
    <td><button (click)="alterarAtividade(atividade)">Alterar</button></td>
    <td><button (click)="removerAtividade(atividade)">Remover</button></td>
 </tr>
 <tr>
    <td><label>Profissional </label></td>
-   <td><input [(ngModel)]="atividade.profissional" ></td>
+   <td><input name="profissional" [(ngModel)]="atividade.profissional" ></td>
    <td><button (click)="buscarAtividade(atividade)">Buscar Atividade</button></td>
    <td><button (click)="cancelarBuscaAtividade()">Cancelar Buscar por Atividade</button></td>
    <td *ngIf="atividadeduplicada">
@@ -25,19 +25,19 @@
 </tr>
 <tr>
    <td><label>Participantes</label></td>
-   <td><input [(ngModel)]="atividade.participantes" ></td>
+   <td><input name="participantes" [(ngModel)]="atividade.participantes" ></td>
 </tr>
 <tr>
    <td><label>Local</label></td>
-   <td><input [(ngModel)]="atividade.local" ></td>
+   <td><input name="local" [(ngModel)]="atividade.local" ></td>
 </tr>
 <tr>
    <td><label>Data Inicial</label></td>
-   <td><input [(ngModel)]="atividade.datainicial" ></td>
+   <td><input name="datai"[(ngModel)]="atividade.datainicial" ></td>
 </tr>
 <tr>
    <td><label>Data Final</label></td>
-   <td><input [(ngModel)]="atividade.datafinal" ></td>
+   <td><input name="dataf" [(ngModel)]="atividade.datafinal" ></td>
 </tr>
 </table>
 
@@ -51,7 +51,7 @@
       <th>Data Inicial</th>
       <th>Data Final</th>
    </tr>
-   <tr *ngFor="let a of atividades">
+   <tr *ngFor="let a of atividades" name="atividadelist">
       <td>{{a.atividade}}</td>
       <td>{{a.profissional}}</td>
       <td>{{a.participantes|slice:0:10}}...<button (click)="verMais(a.atividade)">+</button></td>
