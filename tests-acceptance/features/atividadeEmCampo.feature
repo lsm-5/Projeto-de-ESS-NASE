@@ -6,10 +6,10 @@ When aperto em salvar
 Then vejo a atividade "Acolhimento", profissional "Lucas Mendonça", local "CEU", data inicial "31/12/19", data final "31/12/19"
 
 Scenario: Busca de Atividade em campo durante o mês de fevereiro de 2018.
-Given estou na "página de busca" de atividade em campo
-And vejo as seções vazias de atividade, profissional, datas, participantes, local
+Given estou na página de busca de atividade em campo
+Given vejo as seções vazias de atividade, profissional, datas, participantes, local
 When preencho a seção de data com "01/02/2019" entre "28/02/2019"
-And aperto em "buscar"
+When aperto em buscar
 Then eu vejo o registro de atividade "Palestra sobre o RU", profissional "Roberta Maria", participante "Jennifer", local "Casa Mista", data inicial "15/02/19", data final "15/02/19"
 
 Scenario:Busca da relação de estudante do acolhimento realizado fora do NASE.
