@@ -13,29 +13,41 @@ const protractor_1 = require("protractor");
 let chai = require('chai').use(require('chai-as-promised'));
 let expect = chai.expect;
 let sleep = (ms => new Promise(resolve => setTimeout(resolve, ms)));
-let sameCPF = ((elem, cpf) => elem.element(protractor_1.by.name('cpflist')).getText().then(text => text === cpf));
-let sameName = ((elem, name) => elem.element(protractor_1.by.name('nomelist')).getText().then(text => text === name));
-let pAND = ((p, q) => p.then(a => q.then(b => a && b)));
+let sameName = ((elem, name) => elem.element(protractor_1.by.name('atividadelist')).getText().then(text => text === name));
+let pAND = (p => p.then(a => a && p));
 cucumber_1.defineSupportCode(function ({ Given, When, Then }) {
+    //Scenario: Registro de Atividade em campo, sem os dados dos alunos que compareceram
     Given(/^estou na página de registro de atividade em campo$/, () => __awaiter(this, void 0, void 0, function* () {
         yield protractor_1.browser.get("http://localhost:4200/");
         yield expect(protractor_1.browser.getTitle()).to.eventually.equal('TaGui');
-        yield protractor_1.$("a[name='alunos']").click();
+        yield protractor_1.$("a[name='atividadeEmCampo']").click();
     }));
-    Given(/^I cannot see a student with CPF "(\d*)" in the students list$/, (cpf) => __awaiter(this, void 0, void 0, function* () {
-        var allcpfs = protractor_1.element.all(protractor_1.by.name('cpflist'));
-        yield allcpfs;
-        var samecpfs = allcpfs.filter(elem => elem.getText().then(text => text === cpf));
-        yield samecpfs;
-        yield samecpfs.then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(0));
+    Given(/^vejo a seções vazias de atividade, profissional, participantes, local, data inicial, data final$/, (cpf) => __awaiter(this, void 0, void 0, function* () {
+        var input = protractor_1.element.all(protractor_1.by.name('nome'));
+        (yield input) == null;
+        input = protractor_1.element.all(protractor_1.by.name('profissional'));
+        (yield input) == null;
+        input = protractor_1.element.all(protractor_1.by.name('participantes'));
+        (yield input) == null;
+        input = protractor_1.element.all(protractor_1.by.name('local'));
+        (yield input) == null;
+        input = protractor_1.element.all(protractor_1.by.name('datai'));
+        (yield input) == null;
+        input = protractor_1.element.all(protractor_1.by.name('dataf'));
+        (yield input) == null;
     }));
-    When(/^I try to register the student "([^\"]*)" with CPF "(\d*)"$/, (name, cpf) => __awaiter(this, void 0, void 0, function* () {
-        yield protractor_1.$("input[name='namebox']").sendKeys(name);
-        yield protractor_1.$("input[name='cpfbox']").sendKeys(cpf);
+    When(/^preencho com a atividade "([^\"]*)", profissional "([^\"]*)", local "([^\"]*)", data inicial "([^\"]*)", data final "([^\"]*)"$/, (nome, profissional, local, datai, dataf) => __awaiter(this, void 0, void 0, function* () {
+        yield protractor_1.$("input[name='nome']").sendKeys(nome);
+        yield protractor_1.$("input[name='cpfbox']").sendKeys(profissional);
+        yield protractor_1.$("input[name='cpfbox']").sendKeys(local);
+        yield protractor_1.$("input[name='cpfbox']").sendKeys(datai);
+        yield protractor_1.$("input[name='cpfbox']").sendKeys(dataf);
+    }));
+    When(/^aperto em salvar$/, (nome, profissional, local, datai, dataf) => __awaiter(this, void 0, void 0, function* () {
         yield protractor_1.element(protractor_1.by.buttonText('Adicionar')).click();
     }));
-    Then(/^I can see "([^\"]*)" with CPF "(\d*)" in the students list$/, (name, cpf) => __awaiter(this, void 0, void 0, function* () {
-        var allalunos = protractor_1.element.all(protractor_1.by.name('alunolist'));
-        allalunos.filter(elem => pAND(sameCPF(elem, cpf), sameName(elem, name))).then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
+    Then(/^vejo a atividade "([^\"]*)", profissional "([^\"]*)", local "([^\"]*)", data inicial "([^\"]*)", data final "([^\"]*)"$/, (nome, profissional, local, dini, dfin) => __awaiter(this, void 0, void 0, function* () {
+        var allalunos = protractor_1.element.all(protractor_1.by.name('atividadelist'));
+        allalunos.filter(elem => pAND(sameName(elem, nome))).then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
     }));
 });

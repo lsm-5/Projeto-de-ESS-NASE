@@ -10,25 +10,28 @@ let sameName = ((elem, name) => elem.element(by.name('atividadelist')).getText()
 let pAND = (p => p.then(a => a && p))
 
 defineSupportCode(function ({ Given, When, Then }) {
+
+    //Scenario: Registro de Atividade em campo, sem os dados dos alunos que compareceram
+
     Given(/^estou na página de registro de atividade em campo$/, async () => {
         await browser.get("http://localhost:4200/");
         await expect(browser.getTitle()).to.eventually.equal('TaGui');
-        await $("a[name='Atividade em Campo']").click();
+        await $("a[name='atividadeEmCampo']").click();
     })
 
     Given(/^vejo a seções vazias de atividade, profissional, participantes, local, data inicial, data final$/, async (cpf) => {
         var input = element.all(by.name('nome'));
-        await if (input=="") {};
+        await input==null;
         input = element.all(by.name('profissional'));
-        await if (input=="") {};
+        await input==null;
         input = element.all(by.name('participantes'));
-        await if (input=="") {};
+        await input==null;
         input = element.all(by.name('local'));
-        await if (input=="") {};
+        await input==null;
         input = element.all(by.name('datai'));
-        await if (input=="") {};
+        await input==null;
         input = element.all(by.name('dataf'));
-        await if (input=="") {};
+        await input==null;
     });
 
     When(/^preencho com a atividade "([^\"]*)", profissional "([^\"]*)", local "([^\"]*)", data inicial "([^\"]*)", data final "([^\"]*)"$/, async (nome, profissional, local, datai, dataf) => {
@@ -37,15 +40,14 @@ defineSupportCode(function ({ Given, When, Then }) {
         await $("input[name='cpfbox']").sendKeys(<string> local);
         await $("input[name='cpfbox']").sendKeys(<string> datai);
         await $("input[name='cpfbox']").sendKeys(<string> dataf);
-        await element(by.buttonText('Adicionar')).click();
     });
 
     When(/^aperto em salvar$/, async (nome, profissional, local, datai, dataf) => {
         await element(by.buttonText('Adicionar')).click();
     });
 
-    Then(/^vejo a atividade "([^\"]*)", profissional "Lucas Mendonça", local "CEU", data inicial "31/12/19", data final "31/12/19"$/, async (nome) => {
+    Then(/^vejo a atividade "([^\"]*)", profissional "([^\"]*)", local "([^\"]*)", data inicial "([^\"]*)", data final "([^\"]*)"$/, async (nome, profissional, local, dini, dfin) => {
         var allalunos : ElementArrayFinder = element.all(by.name('atividadelist'));
-        allalunos.filter(elem => pAND(sameCPF(elem,nome))).then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
+        allalunos.filter(elem => pAND(sameName(elem,nome))).then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
     });
 })
