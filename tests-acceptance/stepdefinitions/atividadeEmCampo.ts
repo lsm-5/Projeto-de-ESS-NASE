@@ -103,4 +103,48 @@ defineSupportCode(function ({ Given, When, Then }) {
     });
 
 
+    //Scenario:Busca da relação de estudante do acolhimento realizado fora do NASE.
+    Given(/^Given estou na página de registro de atividade em campo$/, async () => {
+        await browser.get("http://localhost:4200/");
+        await expect(browser.getTitle()).to.eventually.equal('TaGui');
+        await $("a[name='atividadeEmCampo']").click();
+
+        //colocando o resultado no servidor pra o teste rodar sem precisar de um estado inicial
+        await $("input[name='nome']").sendKeys("Acolhimento");
+        await $("input[name='profissional']").sendKeys("Lucas Mendonça");
+        await $("input[name='participantes']").sendKeys("Roberto Tomás da Silva, Íris Soares dos Santos, Aline Gouveia Matias, Thais Amara Silva de Mendonça");
+        await $("input[name='local']").sendKeys("CEU");
+        await $("input[name='datai']").sendKeys("31/12/19");
+        await $("input[name='dataf']").sendKeys("31/12/19");
+        await element(by.buttonText('Adicionar')).click();
+    })
+
+    Given(/^Given vejo a atividade "([^\"]*)", profissional "([^\"]*)", participantes "([^\"]*)", local "([^\"]*)", data inicial "([^\"]*)", data final "([^\"]*)"$/, async (nome, profissional, participantes, local, dini, dfin) => {
+        var allatividades : ElementArrayFinder = element.all(by.name('atividadelist'));
+        await allatividades.filter(elem => pAND(same(elem,nome))).then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
+        await allatividades.filter(elem => pAND(same(elem,profissional))).then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
+        await allatividades.filter(elem => pAND(same(elem,participantes))).then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
+        await allatividades.filter(elem => pAND(same(elem,local))).then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
+        await allatividades.filter(elem => pAND(same(elem,dini))).then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
+        await allatividades.filter(elem => pAND(same(elem,dfin))).then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
+    });
+
+    When(/^eu aperto em expandir$/, async () => {
+        await element(by.buttonText('+')).click();
+    });
+
+    Then(/^Given vejo a atividade "([^\"]*)", profissional "([^\"]*)", participantes "([^\"]*)", local "([^\"]*)", data inicial "([^\"]*)", data final "([^\"]*)"$/, async (nome, profissional, participantes, local, dini, dfin) => {
+        var atividadeC : ElementArrayFinder = element.all(by.name('nomeC'));
+        await atividadeC.filter(elem => pAND(same(elem,nome))).then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
+        var atividadeC : ElementArrayFinder = element.all(by.name('profissionalC'));
+        await atividadeC.filter(elem => pAND(same(elem,profissional))).then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
+        var atividadeC : ElementArrayFinder = element.all(by.name('participantesC'));
+        await atividadeC.filter(elem => pAND(same(elem,participantes))).then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
+        var atividadeC : ElementArrayFinder = element.all(by.name('localC'));
+        await atividadeC.filter(elem => pAND(same(elem,local))).then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
+        var atividadeC : ElementArrayFinder = element.all(by.name('dataiC'));
+        await atividadeC.filter(elem => pAND(same(elem,dini))).then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
+        var atividadeC : ElementArrayFinder = element.all(by.name('datafC'));
+        await atividadeC.filter(elem => pAND(same(elem,dfin))).then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
+    });
 })

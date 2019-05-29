@@ -13,10 +13,10 @@ When aperto em buscar
 Then eu vejo o registro de atividade "Palestra sobre o RU", profissional "Roberta Maria", participante "Jennifer", local "Casa Mista", data inicial "15/02/19", data final "15/02/19"
 
 Scenario:Busca da relação de estudante do acolhimento realizado fora do NASE.
-Given estou na "página de busca" com a busca "acolhimento" já efetuada
-And vejo a atividade "Acolhimento", profissional "Lucas Mendonça", participantes "Roberto ...", local "CEU", data inicial "31/12/19", data final "31/12/19"
-When eu aperto em "expandir atividade"
-Then eu vejo atividade "Acolhimento", profissional "Lucas Mendonça", participantes "Roberto Tomás da Silva", "Íris Soares dos Santos", "Aline Gouveia Matias", "Thais Amara Silva de Mendonça", local "CEU", data "31/12/19", data final "31/12/19"
+Given estou na página de registro de atividade em campo
+Given vejo a atividade "Acolhimento", profissional "Lucas Mendonça", participantes "Roberto To...", local "CEU", data inicial "31/12/19", data final "31/12/19"
+When eu aperto em expandir
+Then eu vejo atividade "Acolhimento", profissional "Lucas Mendonça", participantes "Roberto Tomás da Silva, Íris Soares dos Santos, Aline Gouveia Matias, Thais Amara Silva de Mendonça", local "CEU", data "31/12/19", data final "31/12/19"
 
 Scenario: Edição de uma atividade em campo realizado no local errado.
 Given estou na "página de edição" de atividade em campo

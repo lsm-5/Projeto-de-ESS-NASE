@@ -54,7 +54,7 @@
    <tr *ngFor="let a of atividades" name="atividadelist">
       <td>{{a.atividade}}</td>
       <td>{{a.profissional}}</td>
-      <td>{{a.participantes|slice:0:10}}...<button (click)="verMais(a.atividade)">+</button></td>
+      <td>{{a.participantes|slice:0:10}}...<button (click)="verMais(a.atividade)" name="expandir">+</button></td>
       <td>{{a.local}}</td>
       <td>{{a.datainicial}}</td>
       <td>{{a.datafinal}}</td>
@@ -73,12 +73,12 @@
             <th>Data Final</th>
          </tr>
          <tr>
-            <td>{{atividadeCompleta.atividade}}</td>
-            <td>{{atividadeCompleta.profissional}}</td>
-            <td>{{atividadeCompleta.participantes}}</td>
-            <td>{{atividadeCompleta.local}}</td>
-            <td>{{atividadeCompleta.datainicial}}</td>
-            <td>{{atividadeCompleta.datafinal}}</td>
+            <td name="nomeC">{{atividadeCompleta.atividade}}</td>
+            <td name="profissionalC">{{atividadeCompleta.profissional}}</td>
+            <td name="participantesC">{{atividadeCompleta.participantes}}</td>
+            <td name="localC">{{atividadeCompleta.local}}</td>
+            <td name="dataiC">{{atividadeCompleta.datainicial}}</td>
+            <td name="datafC">{{atividadeCompleta.datafinal}}</td>
             <td><button (click)="verMenos()">Fechar</button></td>
          </tr>
    </table>
