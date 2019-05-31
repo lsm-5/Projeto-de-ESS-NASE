@@ -57,7 +57,7 @@ defineSupportCode(function ({ Given, When, Then }) {
 
     //Scenario: Busca de Atividade em campo durante o mês de fevereiro de 2018.
 
-    Given(/^Given estou na página de busca de atividade em campo$/, async () => {
+    Given(/^estou na página de busca de atividade em campo$/, async () => {
         await browser.get("http://localhost:4200/");
         await expect(browser.getTitle()).to.eventually.equal('TaGui');
         await $("a[name='atividadeEmCampo']").click();
@@ -104,7 +104,7 @@ defineSupportCode(function ({ Given, When, Then }) {
 
 
     //Scenario:Busca da relação de estudante do acolhimento realizado fora do NASE.
-    Given(/^Given estou na página de registro de atividade em campo$/, async () => {
+    Given(/^estou na página de registro de atividade em campo$/, async () => {
         await browser.get("http://localhost:4200/");
         await expect(browser.getTitle()).to.eventually.equal('TaGui');
         await $("a[name='atividadeEmCampo']").click();
@@ -119,7 +119,7 @@ defineSupportCode(function ({ Given, When, Then }) {
         await element(by.buttonText('Adicionar')).click();
     })
 
-    Given(/^Given vejo a atividade "([^\"]*)", profissional "([^\"]*)", participantes "([^\"]*)", local "([^\"]*)", data inicial "([^\"]*)", data final "([^\"]*)"$/, async (nome, profissional, participantes, local, dini, dfin) => {
+    Given(/^vejo a atividade "([^\"]*)", profissional "([^\"]*)", participantes "([^\"]*)", local "([^\"]*)", data inicial "([^\"]*)", data final "([^\"]*)"$/, async (nome, profissional, participantes, local, dini, dfin) => {
         var allatividades : ElementArrayFinder = element.all(by.name('atividadelist'));
         await allatividades.filter(elem => pAND(same(elem,nome))).then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
         await allatividades.filter(elem => pAND(same(elem,profissional))).then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
@@ -133,7 +133,7 @@ defineSupportCode(function ({ Given, When, Then }) {
         await element(by.buttonText('+')).click();
     });
 
-    Then(/^Given vejo a atividade "([^\"]*)", profissional "([^\"]*)", participantes "([^\"]*)", local "([^\"]*)", data inicial "([^\"]*)", data final "([^\"]*)"$/, async (nome, profissional, participantes, local, dini, dfin) => {
+    Then(/^vejo a atividade "([^\"]*)", profissional "([^\"]*)", participantes "([^\"]*)", local "([^\"]*)", data inicial "([^\"]*)", data final "([^\"]*)"$/, async (nome, profissional, participantes, local, dini, dfin) => {
         var atividadeC : ElementArrayFinder = element.all(by.name('nomeC'));
         await atividadeC.filter(elem => pAND(same(elem,nome))).then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
         var atividadeC : ElementArrayFinder = element.all(by.name('profissionalC'));
@@ -146,5 +146,50 @@ defineSupportCode(function ({ Given, When, Then }) {
         await atividadeC.filter(elem => pAND(same(elem,dini))).then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
         var atividadeC : ElementArrayFinder = element.all(by.name('datafC'));
         await atividadeC.filter(elem => pAND(same(elem,dfin))).then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
+    });
+
+    // Scenario: Edição de uma atividade em campo realizado no local errado.
+    Given(/^estou na página de registro de atividade em campo$/, async () => {
+        await browser.get("http://localhost:4200/");
+        await expect(browser.getTitle()).to.eventually.equal('TaGui');
+        await $("a[name='atividadeEmCampo']").click();
+
+        //colocando o resultado no servidor pra o teste rodar sem precisar de um estado inicial
+        await $("input[name='nome']").sendKeys("Palestra sobre DST");
+        await $("input[name='profissional']").sendKeys("Eusa Marina Mendonça");
+        await $("input[name='participantes']").sendKeys("Douglas Tomás da Silva, José Gabriel, Bruno Matias, Xuliano Domingos");
+        await $("input[name='local']").sendKeys("CEU");
+        await $("input[name='datai']").sendKeys("31/12/19");
+        await $("input[name='dataf']").sendKeys("31/12/19");
+        await element(by.buttonText('Adicionar')).click();
+    })
+
+    Given(/^vejo atividade "([^\"]*)", profissional "([^\"]*)", participantes "([^\"]*)", local "([^\"]*)", data inicial "([^\"]*)", data final "([^\"]*)"$/, async (nome, profissional, participantes, local, dini, dfin) => {
+        var allatividades : ElementArrayFinder = element.all(by.name('atividadelist'));
+        await allatividades.filter(elem => pAND(same(elem,nome))).then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
+        await allatividades.filter(elem => pAND(same(elem,profissional))).then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
+        await allatividades.filter(elem => pAND(same(elem,participantes))).then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
+        await allatividades.filter(elem => pAND(same(elem,local))).then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
+        await allatividades.filter(elem => pAND(same(elem,dini))).then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
+        await allatividades.filter(elem => pAND(same(elem,dfin))).then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
+    });
+
+    When(/^faço a alteração da atividade para atividade "([^\"]*)", profissional "([^\"]*)", participantes "([^\"]*)", local "([^\"]*)", data inicial "([^\"]*)", data final "([^\"]*)"$/, async (nome, profissional, participantes, local, dini, dfin) => {
+        await $("input[name='nome']").sendKeys(<string> nome);
+        await $("input[name='profissional']").sendKeys(<string> profissional);
+        await $("input[name='participantes']").sendKeys(<string> participantes);
+        await $("input[name='local']").sendKeys(<string> local);
+        await $("input[name='datai']").sendKeys(<string> dini);
+        await $("input[name='dataf']").sendKeys(<string> dfin);   
+    });
+
+    When(/^aperto em atualizar$/, async () => {
+        await element(by.buttonText('Alterar')).click();
+    });
+
+    Then(/^eu vejo a atividade "([^\"]*)" com o local "([^\"]*)"$/, async (nome, local) => {
+        var allatividades : ElementArrayFinder = element.all(by.name('atividadelist'));
+        await allatividades.filter(elem => pAND(same(elem,nome))).then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
+        await allatividades.filter(elem => pAND(same(elem,local))).then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
     });
 })

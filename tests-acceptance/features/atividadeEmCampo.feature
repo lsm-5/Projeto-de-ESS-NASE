@@ -19,8 +19,8 @@ When eu aperto em expandir
 Then eu vejo atividade "Acolhimento", profissional "Lucas Mendonça", participantes "Roberto Tomás da Silva, Íris Soares dos Santos, Aline Gouveia Matias, Thais Amara Silva de Mendonça", local "CEU", data "31/12/19", data final "31/12/19"
 
 Scenario: Edição de uma atividade em campo realizado no local errado.
-Given estou na "página de edição" de atividade em campo
-And vejo atividade "Palestra sobre DST", profissional "Eusa Marina Mendonça", participantes "Douglas Tomás da Silva", "José Gabriel", "Bruno Matias", "Xuliano Domingos", local "CEU", data inicial "31/12/19", data final "31/12/19"
-When faço a alteração de "CEU" para "Centro de Informática - CIn"
-And aperto em "Atualizar"
-Then eu vejo uma mensagem de "Atualização Realizada com Sucesso"
+Given estou na página de registro de atividade em campo
+Given vejo atividade "Palestra sobre DST", profissional "Eusa Marina Mendonça", participantes "Douglas Tomás da Silva, José Gabriel, Bruno Matias, Xuliano Domingos", local "CEU", data inicial "31/12/19", data final "31/12/19"
+When faço a alteração da atividade para atividade "Palestra sobre DST", profissional "Eusa Marina Mendonça", participantes "Douglas Tomás da Silva, José Gabriel, Bruno Matias, Xuliano Domingos", local "Centro de Informática - CIn", data inicial "31/12/19", data final "31/12/19"
+When aperto em atualizar
+Then eu vejo a atividade "Palestra sobre DST" com o local "Centro de Informática - CIn"
