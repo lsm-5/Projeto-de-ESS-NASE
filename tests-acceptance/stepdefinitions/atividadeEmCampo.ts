@@ -19,7 +19,7 @@ defineSupportCode(function ({ Given, When, Then }) {
         await $("a[name='atividadeEmCampo']").click();
     })
 
-    Given(/^vejo a seções vazias de atividade, profissional, participantes, local, data inicial, data final$/, async (cpf) => {
+    Given(/^vejo a seções vazias de atividade, profissional, participantes, local, data inicial, data final$/, async () => {
         var input = element.all(by.name('nome'));
         await input==null;
         input = element.all(by.name('profissional'));
@@ -46,13 +46,18 @@ defineSupportCode(function ({ Given, When, Then }) {
         await element(by.buttonText('Adicionar')).click();
     });
 
-    Then(/^vejo a atividade "([^\"]*)", profissional "([^\"]*)", local "([^\"]*)", data inicial "([^\"]*)", data final "([^\"]*)"$/, async (nome, profissional, local, dini, dfin) => {
+    Then(/^observo a atividade "([^\"]*)", profissional "([^\"]*)", local "([^\"]*)", data inicial "([^\"]*)", data final "([^\"]*)"$/, async (nome, profissional, local, dini, dfin) => {
         var allatividades : ElementArrayFinder = element.all(by.name('atividadelist'));
         await allatividades.filter(elem => pAND(same(elem,nome))).then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
         await allatividades.filter(elem => pAND(same(elem,profissional))).then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
         await allatividades.filter(elem => pAND(same(elem,local))).then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
         await allatividades.filter(elem => pAND(same(elem,dini))).then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
         await allatividades.filter(elem => pAND(same(elem,dfin))).then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
+
+        //voltar o sesrver pro estado inicial
+        await $("input[name='nome']").sendKeys(<string> nome);
+        await element(by.buttonText('Remover')).click();
+
     });
 
     //Scenario: Busca de Atividade em campo durante o mês de fevereiro de 2018.
@@ -72,7 +77,7 @@ defineSupportCode(function ({ Given, When, Then }) {
         await element(by.buttonText('Adicionar')).click();
     })
 
-    Given(/^vejo as seções vazias de atividade, profissional, datas, participantes, local$/, async () => {
+    Given(/^vejo as seções atividade, profissional, datas, participantes, local vazias$/, async () => {
         var input = element.all(by.name('nome'));
         await input==null;
         input = element.all(by.name('profissional'));
@@ -100,11 +105,15 @@ defineSupportCode(function ({ Given, When, Then }) {
         await allatividades.filter(elem => pAND(same(elem,local))).then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
         await allatividades.filter(elem => pAND(same(elem,dini))).then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
         await allatividades.filter(elem => pAND(same(elem,dfin))).then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
+    
+        //voltar o sesrver pro estado inicial
+        await $("input[name='nome']").sendKeys(<string> nome);
+        await element(by.buttonText('Remover')).click();
     });
 
 
     //Scenario:Busca da relação de estudante do acolhimento realizado fora do NASE.
-    Given(/^estou na página de registro de atividade em campo$/, async () => {
+    Given(/^estou na página de busca da atividade em campo$/, async () => {
         await browser.get("http://localhost:4200/");
         await expect(browser.getTitle()).to.eventually.equal('TaGui');
         await $("a[name='atividadeEmCampo']").click();
@@ -119,7 +128,7 @@ defineSupportCode(function ({ Given, When, Then }) {
         await element(by.buttonText('Adicionar')).click();
     })
 
-    Given(/^vejo a atividade "([^\"]*)", profissional "([^\"]*)", participantes "([^\"]*)", local "([^\"]*)", data inicial "([^\"]*)", data final "([^\"]*)"$/, async (nome, profissional, participantes, local, dini, dfin) => {
+    Given(/^eu vejo a atividade "([^\"]*)", profissional "([^\"]*)", participantes "([^\"]*)", local "([^\"]*)", data inicial "([^\"]*)", data final "([^\"]*)"$/, async (nome, profissional, participantes, local, dini, dfin) => {
         var allatividades : ElementArrayFinder = element.all(by.name('atividadelist'));
         await allatividades.filter(elem => pAND(same(elem,nome))).then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
         await allatividades.filter(elem => pAND(same(elem,profissional))).then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
@@ -133,7 +142,7 @@ defineSupportCode(function ({ Given, When, Then }) {
         await element(by.buttonText('+')).click();
     });
 
-    Then(/^vejo a atividade "([^\"]*)", profissional "([^\"]*)", participantes "([^\"]*)", local "([^\"]*)", data inicial "([^\"]*)", data final "([^\"]*)"$/, async (nome, profissional, participantes, local, dini, dfin) => {
+    Then(/^vejo a atividade "([^\"]*)", profissional "([^\"]*)", participantes "([^\"]*)", local "([^\"]*)", data inicial "([^\"]*)", data final "([^\"]*) expandida"$/, async (nome, profissional, participantes, local, dini, dfin) => {
         var atividadeC : ElementArrayFinder = element.all(by.name('nomeC'));
         await atividadeC.filter(elem => pAND(same(elem,nome))).then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
         var atividadeC : ElementArrayFinder = element.all(by.name('profissionalC'));
@@ -146,10 +155,14 @@ defineSupportCode(function ({ Given, When, Then }) {
         await atividadeC.filter(elem => pAND(same(elem,dini))).then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
         var atividadeC : ElementArrayFinder = element.all(by.name('datafC'));
         await atividadeC.filter(elem => pAND(same(elem,dfin))).then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
+    
+        //voltar o sesrver pro estado inicial
+        await $("input[name='nome']").sendKeys(<string> nome);
+        await element(by.buttonText('Remover')).click();
     });
 
     // Scenario: Edição de uma atividade em campo realizado no local errado.
-    Given(/^estou na página de registro de atividade em campo$/, async () => {
+    Given(/^estou na página de atividade em campo$/, async () => {
         await browser.get("http://localhost:4200/");
         await expect(browser.getTitle()).to.eventually.equal('TaGui');
         await $("a[name='atividadeEmCampo']").click();
@@ -164,7 +177,7 @@ defineSupportCode(function ({ Given, When, Then }) {
         await element(by.buttonText('Adicionar')).click();
     })
 
-    Given(/^vejo atividade "([^\"]*)", profissional "([^\"]*)", participantes "([^\"]*)", local "([^\"]*)", data inicial "([^\"]*)", data final "([^\"]*)"$/, async (nome, profissional, participantes, local, dini, dfin) => {
+    Given(/^vejo a atividade "([^\"]*)", profissional "([^\"]*)", participantes "([^\"]*)", local "([^\"]*)", data inicial "([^\"]*)", data final "([^\"]*)"$/, async (nome, profissional, participantes, local, dini, dfin) => {
         var allatividades : ElementArrayFinder = element.all(by.name('atividadelist'));
         await allatividades.filter(elem => pAND(same(elem,nome))).then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
         await allatividades.filter(elem => pAND(same(elem,profissional))).then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
@@ -191,5 +204,9 @@ defineSupportCode(function ({ Given, When, Then }) {
         var allatividades : ElementArrayFinder = element.all(by.name('atividadelist'));
         await allatividades.filter(elem => pAND(same(elem,nome))).then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
         await allatividades.filter(elem => pAND(same(elem,local))).then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
+    
+        //voltar o sesrver pro estado inicial
+        await $("input[name='nome']").sendKeys(<string> nome);
+        await element(by.buttonText('Remover')).click();
     });
 })
