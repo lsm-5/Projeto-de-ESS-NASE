@@ -13,7 +13,7 @@ Then observo a atividade "Acolhimento", profissional "Lucas Mendonça", local "C
 Scenario: Busca de Atividade em campo durante o mês de fevereiro de 2018.
 Given estou na página de busca de atividade em campo
 Given vejo as seções atividade, profissional, datas, participantes, local vazias
-When preencho a seção de data com "01/02/2019" entre "28/02/2019"
+When preencho a seção de data com "01/02/19" entre "28/02/19"
 When aperto em buscar
 Then eu vejo o registro de atividade "Palestra sobre o RU", profissional "Roberta Maria", participante "Jennifer", local "Casa Mista", data inicial "15/02/19", data final "15/02/19"
 
@@ -25,7 +25,7 @@ Then eu vejo atividade "Acolhimento", profissional "Lucas Mendonça", participan
 
 Scenario: Edição de uma atividade em campo realizado no local errado.
 Given estou na página de atividade em campo
-Given vejo atividade "Palestra sobre DST", profissional "Eusa Marina Mendonça", participantes "Douglas Tomás da Silva, José Gabriel, Bruno Matias, Xuliano Domingos", local "CEU", data inicial "31/12/19", data final "31/12/19"
+Given vejo atividade "Palestra sobre DST", profissional "Eusa Marina Mendonça", participantes "Douglas Tomás da Silva, José Gabriel, Bruno Matias, Xuliano Domingos", local "CEU", data inicial "30/03/19", data final "30/03/19"
 When faço a alteração da atividade para atividade "Palestra sobre DST", profissional "Eusa Marina Mendonça", participantes "Douglas Tomás da Silva, José Gabriel, Bruno Matias, Xuliano Domingos", local "Centro de Informática - CIn", data inicial "31/12/19", data final "31/12/19"
 When aperto em atualizar
 Then eu vejo a atividade "Palestra sobre DST" com o local "Centro de Informática - CIn"

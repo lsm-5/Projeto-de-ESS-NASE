@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const atividadeEmCampo_1 = require("../../gui/ta-gui/src/app/atividadeEmCampo");
+const atividadeEmCampo_1 = require("../../gui/ta-gui/src/app/atividadeCampo/atividadeEmCampo");
 class CadastroDeAtividades {
     constructor() {
         this.atividades = [];

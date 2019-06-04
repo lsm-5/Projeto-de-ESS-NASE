@@ -1,7 +1,7 @@
 import express = require('express');
 import bodyParser = require("body-parser");
 
-import { AtividadeEmCampo } from '../../gui/ta-gui/src/app/atividadeEmCampo';
+import { AtividadeEmCampo } from '../../gui/ta-gui/src/app/atividadeCampo/atividadeEmCampo';
 import {CadastroDeAtividades} from './cadastrodeatividades';
 
 var app = express();
