@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { NgModule } from '@angular/core';
 
-import { AtividadeEmCampo } from './atividadeEmCampo';
-import { AtividadeEmCampoService } from './atividadeEmCampo.service';
+import { AtividadeEmCampo } from './atividadeCampo/atividadeEmCampo';
+import { AtividadeEmCampoService } from './atividadeCampo/atividadeEmCampo.service';
 
 @Component({
   selector: 'app-root',

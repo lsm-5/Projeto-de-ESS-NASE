@@ -1,0 +1,108 @@
+<html (mousemove)="onMove()">
+
+<table>
+<tr>
+   <td><label>Nome da Atividade em Campo </label></td>
+   <td><input name="nome" [(ngModel)]="atividade.atividade" ></td>
+   <td><button (click)="criarAtividade(atividade)">Adicionar</button></td>
+   <td><button (click)="alterarAtividade(atividade)">Alterar</button></td>
+   <td><button (click)="removerAtividade(atividade)">Remover</button></td>
+</tr>
+<tr>
+   <td><label>Profissional </label></td>
+   <td><input name="profissional" [(ngModel)]="atividade.profissional" ></td>
+   <td><button (click)="buscarAtividade(atividade)">Buscar Atividade</button></td>
+   <td><button (click)="cancelarBuscaAtividade()">Cancelar Buscar por Atividade</button></td>
+   <td *ngIf="atividadeduplicada">
+     Já existe uma atividade em campo com esse nome.
+   </td>
+   <td *ngIf="atividadeinexistente">
+      Não existe nenhuma atividade em campo com este nome.
+   </td>
+   <td *ngIf="atividadeinexistentebusca">
+      Não existe nenhuma atividade em campo entre estas datas.
+   </td>
+</tr>
+<tr>
+   <td><label>Participantes</label></td>
+   <td><input name="participantes" [(ngModel)]="atividade.participantes" ></td>
+</tr>
+<tr>
+   <td><label>Local</label></td>
+   <td><input name="local" [(ngModel)]="atividade.local" ></td>
+</tr>
+<tr>
+   <td><label>Data Inicial</label></td>
+   <td><input name="datai"[(ngModel)]="atividade.datainicial" ></td>
+</tr>
+<tr>
+   <td><label>Data Final</label></td>
+   <td><input name="dataf" [(ngModel)]="atividade.datafinal" ></td>
+</tr>
+</table>
+
+
+<table>
+   <tr *ngIf="atividades.length > 0">
+      <th>Atividade em Campo</th>
+      <th>Profissional</th>
+      <th>Participantes</th>
+      <th>Local</th>
+      <th>Data Inicial</th>
+      <th>Data Final</th>
+   </tr>
+   <tr *ngFor="let a of atividades" name="atividadelist">
+      <td>{{a.atividade}}</td>
+      <td>{{a.profissional}}</td>
+      <td>{{a.participantes|slice:0:10}}...<button (click)="verMais(a.atividade)" name="expandir">+</button></td>
+      <td>{{a.local}}</td>
+      <td>{{a.datainicial}}</td>
+      <td>{{a.datafinal}}</td>
+   </tr>
+</table>
+
+<td *ngIf=verMaisLigado>
+   <table>
+         <td><h1><label>Visão Compĺeta da Atividade</label></h1></td>
+         <tr>
+            <th>Atividade em Campo</th>
+            <th>Profissional</th>
+            <th>Participantes</th>
+            <th>Local</th>
+            <th>Data Inicial</th>
+            <th>Data Final</th>
+         </tr>
+         <tr>
+            <td name="nomeC">{{atividadeCompleta.atividade}}</td>
+            <td name="profissionalC">{{atividadeCompleta.profissional}}</td>
+            <td name="participantesC">{{atividadeCompleta.participantes}}</td>
+            <td name="localC">{{atividadeCompleta.local}}</td>
+            <td name="dataiC">{{atividadeCompleta.datainicial}}</td>
+            <td name="datafC">{{atividadeCompleta.datafinal}}</td>
+            <td><button (click)="verMenos()">Fechar</button></td>
+         </tr>
+   </table>
+</td>
+
+<td *ngIf=atividadeBuscaLigado>
+   <table>
+         <td><h1><label>Resultado da Busca</label></h1></td>
+         <tr *ngIf="atividadesbusca.length > 0">
+            <th>Atividade em Campo</th>
+            <th>Profissional</th>
+            <th>Participantes</th>
+            <th>Local</th>
+            <th>Data Inicial</th>
+            <th>Data Final</th>
+         </tr>
+         <tr *ngFor="let a of atividadesbusca" name="atividadelistbusca">
+            <td>{{a.atividade}}</td>
+            <td>{{a.profissional}}</td>
+            <td>{{a.participantes}}</td>
+            <td>{{a.local}}</td>
+            <td>{{a.datainicial}}</td>
+            <td>{{a.datafinal}}</td>
+         </tr>
+   </table>
+</td>
+</html>

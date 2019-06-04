@@ -5,8 +5,8 @@ import { RouterModule }   from '@angular/router';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { AtividadeEmCampoComponent } from './atividadeEmCampo.component';
-import { AtividadeEmCampoService } from './atividadeEmCampo.service';
+import { AtividadeEmCampoComponent } from './atividadeCampo/atividadeEmCampo.component';
+import { AtividadeEmCampoService } from './atividadeCampo/atividadeEmCampo.service';
 
 @NgModule({
   declarations: [
