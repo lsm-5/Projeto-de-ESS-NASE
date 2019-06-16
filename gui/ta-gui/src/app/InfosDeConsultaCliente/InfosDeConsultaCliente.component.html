@@ -3,18 +3,18 @@
 <table>
   
   <tr>
-    <td><label>Nome da Atividade em Campo </label></td>
-    <!-- <td><input name="nome" [(ngModel)]="atividade.atividade" ></td>
-    <td><button (click)="criarAtividade(atividade)">Adicionar</button></td>
-    <td><button (click)="alterarAtividade(atividade)">Alterar</button></td>
-    <td><button (click)="removerAtividade(atividade)">Remover</button></td> -->
+    <td><label>CPF </label></td>
+    <td><input name="cpf" [(ngModel)]="info.cpf" ></td>
+    <td><button (click)="criarInfosConsulta(info)">Adicionar</button></td>
+    <td><button (click)="alterarInfosConsulta(info)">Alterar</button></td>
+    <td><button (click)="removerInfosConsulta(info)">Remover</button></td>
   </tr>
-  
+
   <tr>
-    <td><label>Profissional </label></td>
-    <!-- <td><input name="profissional" [(ngModel)]="atividade.profissional" ></td>
-    <td><button (click)="buscarAtividade(atividade)">Buscar Atividade</button></td>
-    <td><button (click)="cancelarBuscaAtividade()">Cancelar Buscar por Atividade</button></td> -->
+    <td><label>Tipo de Consulta</label></td>
+    <td><input name="tipoConsulta" [(ngModel)]="info.tipoConsulta" ></td>
+    <td><button (click)="buscarInfosConsulta(atividade)">Buscar Consulta</button></td>
+    <td><button (click)="cancelarBuscaInfosConsulta()">Cancelar Buscar por Consulta</button></td>
     <td *ngIf="infosduplicada">
       Já existe uma consulta em campo com esse nome.
     </td>
@@ -26,15 +26,8 @@
     </td>
   </tr>
 
-  <tr> 
-    <td><label>Npme do Profissional</label></td>
-    <td><input name="nomeProfissional" [(ngModel)]="info.nomeProfissional" ></td>
-  </tr>
 
-  <tr> 
-    <td><label>Tipo de Consulta</label></td>
-    <td><input name="tipoConsulta" [(ngModel)]="info.tipoConsulta" ></td>
-  </tr>
+
 
   <tr>
     <td><label>Horario da Consulta</label></td>
@@ -46,6 +39,10 @@
       <td><input name="dataConsulta" [(ngModel)]="info.dataConsulta" ></td>
     </tr>
   
+    <tr> 
+      <td><label>Npme do Profissional</label></td>
+      <td><input name="nomeProfissional" [(ngModel)]="info.nomeProfissional" ></td>
+    </tr>
 
   <tr>
       <td><label>Historico Completo</label></td>

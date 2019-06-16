@@ -23,7 +23,7 @@ export class InfosDeConsultaClienteComponent implements OnInit {
     infosInexistenteBusca: boolean = false;
     verMaisLigado: boolean = false;
  
-    criarInfos(a: InfosDeConsultaCliente): void {
+    criarInfosConsulta(a: InfosDeConsultaCliente): void {
       this.InfosDeConsultaService.criar(a)
          .then(ab => {
             if (ab) {
@@ -36,7 +36,7 @@ export class InfosDeConsultaClienteComponent implements OnInit {
          .catch(erro => alert(erro));
     }
  
-    alterarInfos(b: InfosDeConsultaCliente):void{
+    alterarInfosConsulta(b: InfosDeConsultaCliente):void{
        this.InfosDeConsultaService.atualizar(b)
        .then(ba => {
           if (ba) {
@@ -52,7 +52,7 @@ export class InfosDeConsultaClienteComponent implements OnInit {
        .catch(erro => alert(erro));
     }
  
-    removerInfos(a:InfosDeConsultaCliente):void{
+    removerInfosConsulta(a:InfosDeConsultaCliente):void{
        this.InfosDeConsultaService.remover(a)
        .then(a=>{
           if(a){
@@ -72,7 +72,7 @@ export class InfosDeConsultaClienteComponent implements OnInit {
        this.verMaisLigado = false;
     }
  
-    buscarInfos(a:InfosDeConsultaCliente):void{
+    buscarInfosConsulta(a:InfosDeConsultaCliente):void{
        this.InfosDeConsultaService.buscar(a)
        .then(ab => {
           if (ab) {
@@ -85,7 +85,7 @@ export class InfosDeConsultaClienteComponent implements OnInit {
        })
        .catch(erro => alert(erro));
     }
-    cancelarBuscaInfos():void{
+    cancelarBuscaInfosConsulta():void{
        this.infosBuscaLigado = false;
     }
  
