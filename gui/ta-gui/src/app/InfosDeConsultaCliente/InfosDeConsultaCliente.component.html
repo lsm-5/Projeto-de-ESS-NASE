@@ -1,35 +1,25 @@
 <html (mousemove)="onMove()">
 
+    <table>
+        <div>
+          <br/> <span>PREENCHA DATAS P CONSULTAR AGENDAMENTO </span> <br/><br/>
+      </div>
+    </table>
+
 <table>
-  
+  <div>
   <tr>
     <td><label>CPF </label></td>
     <td><input name="cpf" [(ngModel)]="info.cpf" ></td>
-    <td><button (click)="criarInfosConsulta(info)">Adicionar</button></td>
-    <td><button (click)="alterarInfosConsulta(info)">Alterar</button></td>
-    <td><button (click)="removerInfosConsulta(info)">Remover</button></td>
+
   </tr>
 
   <tr>
     <td><label>Tipo de Consulta</label></td>
     <td><input name="tipoConsulta" [(ngModel)]="info.tipoConsulta" ></td>
-    <td><button (click)="buscarInfosConsulta(atividade)">Buscar Consulta</button></td>
-    <td><button (click)="cancelarBuscaInfosConsulta()">Cancelar Buscar por Consulta</button></td>
-    <td *ngIf="infosduplicada">
-      Já existe uma consulta em campo com esse nome.
-    </td>
-    <td *ngIf="infosinexistente">
-        Não existe nenhuma consulta em campo com este nome.
-    </td>
-    <td *ngIf="infosInexistenteBusca">
-        Não existe nenhuma consulta em campo entre estas datas.
-    </td>
-  </tr>
+ </tr>
 
-
-
-
-  <tr>
+ <tr>
     <td><label>Horario da Consulta</label></td>
     <td><input name="horarioConsulta" [(ngModel)]="info.horarioConsulta" ></td>
   </tr>
@@ -40,89 +30,111 @@
     </tr>
   
     <tr> 
-      <td><label>Npme do Profissional</label></td>
+      <td><label>Nome do(a) Profissional</label></td>
       <td><input name="nomeProfissional" [(ngModel)]="info.nomeProfissional" ></td>
     </tr>
 
-  <tr>
+  <!-- <tr> //tem que ser mostrado de outra forma, como Lucas vez é uma possibilidade
       <td><label>Historico Completo</label></td>
       <td><input name="historicoCompleto"[(ngModel)]="info.historicoCompleto" ></td>
-    </tr>
+    </tr> -->
+  </div>
+</table>
 
+<table>
+  <div>
+    <br/> <span>PREENCHA DATAS P CONSULTAR HISTORICO DE AGENDAMENTO</span> <br/><br/>
+  </div>
+  </table>
+
+<table>
+    <div>
+        <tr>       
+            <td><label>Data Inicial para cosultar historico</label></td>
+            <td><input name="datai"[(ngModel)]="info.datainicial" ></td>
+          </tr>
+        
+          <tr>
+            <td><label>Data Final para cosultar historico</label></td>
+            <td><input name="dataf" [(ngModel)]="info.datafinal" ></td>
+          </tr>        
+       </div>
+  
+
+<table>
+    <div>
+      <br/> <span>SELECIONE A OPÇÃO DESEJADA APOS O PREENCHIMENTO: </span> <br/><br/>
+    </div>
+    </table>
+
+  <div>     
   <tr>
-    <td><label>Data Inicial</label></td>
-    <td><input name="datai"[(ngModel)]="info.datainicial" ></td>
+    <td><button (click)="criarInfosConsulta(info)">Adicionar agendamento</button></td>
+    <td><button (click)="alterarInfosConsulta(info)">Alterar agendamento</button></td>
+    <td><button (click)="removerInfosConsulta(info)">Remover agendamento</button></td>
+    <td><button (click)="buscarInfosConsulta(atividade)">Buscar historico de agendamento</button></td>
+    <td><button (click)="cancelarBuscaInfosConsulta()">Cancelar buscar de historico agendamento</button></td>
+    <td *ngIf="infosduplicada">
+      Já existe uma consulta em campo com esse nome.
+    </td>
+    <td *ngIf="infosinexistente">
+        Não existe nenhuma consulta em campo com este nome.
+    </td>
+    <td *ngIf="infosInexistenteBusca">
+        Não existe nenhuma consulta em campo entre estas datas.
+    </td>
   </tr>
-
-  <tr>
-    <td><label>Data Final</label></td>
-    <td><input name="dataf" [(ngModel)]="info.datafinal" ></td>
-  </tr>
-
+</div>
 </table>
 
 
-<!-- <table>
-   <tr *ngIf="atividades.length > 0">
-      <th>Atividade em Campo</th>
-      <th>Profissional</th>
-      <th>Participantes</th>
-      <th>Local</th>
-      <th>Data Inicial</th>
-      <th>Data Final</th>
-   </tr>
-   <tr *ngFor="let a of atividades" name="atividadelist">
-      <td name="nomelist">{{a.atividade}}</td>
-      <td name="profissionallist">{{a.profissional}}</td>
-      <td name="participanteslist">{{a.participantes|slice:0:10}}...<button (click)="verMais(a.atividade)" name="expandir">+</button></td>
-      <td name="locallist">{{a.local}}</td>
-      <td name="dilist">{{a.datainicial}}</td>
-      <td name="dflist">{{a.datafinal}}</td>
-   </tr>
-</table> -->
+<table>
+   <tr *ngIf="InfosDeConsultaCliente.length > 0">
 
-<!-- <td *ngIf=verMaisLigado>
-   <table>
-         <td><h1><label>Visão Completa da Atividade</label></h1></td>
-         <tr>
-            <th>Atividade em Campo</th>
-            <th>Profissional</th>
-            <th>Participantes</th>
-            <th>Local</th>
-            <th>Data Inicial</th>
-            <th>Data Final</th>
-         </tr>
-         <tr>
-            <td>{{atividadeCompleta.atividade}}</td>
-            <td>{{atividadeCompleta.profissional}}</td>
-            <td>{{atividadeCompleta.participantes}}</td>
-            <td>{{atividadeCompleta.local}}</td>
-            <td>{{atividadeCompleta.datainicial}}</td>
-            <td>{{atividadeCompleta.datafinal}}</td>
-            <td><button (click)="verMenos()">Fechar</button></td>
-         </tr>
-   </table>
-</td> -->
+    <th> cpf </th>
+    <th> Tipo De Consulta </th>
+    <th> Horario da Consulta </th>
+    <th> Data Da Consulta </th>
+    <th> Nome do Profissional</th>
+    <th> Data inicial p Historico </th>
+    <th> Data final p Historico </th>
 
-<!-- <td *ngIf=atividadeBuscaLigado>
+   </tr>
+   <tr *ngFor="let a of InfosDeConsultaCliente" name="InfosConsultaList">
+      <td name="cpflist">{{a.cpf}}</td>
+      <td name="tipoDeConsultalist">{{a.tipoDeConsulta}}</td>
+      <td name="horariolist">{{a.horarioConsulta}}</td>
+      <!-- <td name="horariolist">{{a.horario |slice:0:10}}...<button (click)="verMais(a.atividade)" name="expandir">+</button></td> -->
+      <td name="dataconsultaList">{{a.dataDaConsulta}}</td>
+      <td name="nomeProfissionaisList"> {{a.nomeProfissional}} </td>
+      <td name="datainicialList">{{a.datainicial}}</td>
+      <td name="datafinalList">{{a.datafinal}}</td>
+   </tr>
+</table> 
+
+
+<td *ngIf=infosBuscaLigado>
    <table>
          <td><h1><label>Resultado da Busca</label></h1></td>
-         <tr *ngIf="atividadesbusca.length > 0">
-            <th>Atividade em Campo</th>
-            <th>Profissional</th>
-            <th>Participantes</th>
-            <th>Local</th>
-            <th>Data Inicial</th>
-            <th>Data Final</th>
+         <tr *ngIf="infosBuscadas.length > 0">
+            <th> cpf </th>
+            <th> Tipo De Consulta </th>
+            <th> Horario da Consulta </th>
+            <th> Data Da Consulta </th>
+            <th> Nome do Profissional</th>
+            <th> Data inicial p Historico </th>
+            <th> Data final p Historico </th>
          </tr>
-         <tr *ngFor="let a of atividadesbusca" name="atividadelistbusca">
-            <td>{{a.atividade}}</td>
-            <td>{{a.profissional}}</td>
-            <td>{{a.participantes}}</td>
-            <td>{{a.local}}</td>
-            <td>{{a.datainicial}}</td>
-            <td>{{a.datafinal}}</td>
+         <tr *ngFor="let a of infosBuscadas" name="atividadesbuscalist">
+            <td >{{a.cpf}}</td>
+            <td >{{a.tipoDeConsulta}}</td>
+            <td >{{a.horarioConsulta}}</td>
+            <!-- <td name="horariolist">{{a.horario |slice:0:10}}...<button (click)="verMais(a.atividade)" name="expandir">+</button></td> -->
+            <td >{{a.dataDaConsulta}}</td>
+            <td > {{a.nomeProfissional}} </td>
+            <td >{{a.datainicial}}</td>
+            <td >{{a.datafinal}}</td>
          </tr>
    </table>
-</td> -->
+</td> 
 </html>
