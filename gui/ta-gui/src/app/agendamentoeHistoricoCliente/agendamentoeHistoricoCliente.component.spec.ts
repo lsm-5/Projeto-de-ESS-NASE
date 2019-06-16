@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AgendamentoEHistoricoClienteComponent } from './agendamento-ehistorico-cliente.component';
+import { AgendamentoEHistoricoClienteComponent } from './agendamentoeHistoricoCliente.component';
 
 describe('AgendamentoEHistoricoClienteComponent', () => {
   let component: AgendamentoEHistoricoClienteComponent;

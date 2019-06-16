@@ -2,7 +2,7 @@ import { Injectable }    from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
-import { AgendamentoEHistoricoCliente } from './agendamento-ehistorico-cliente';
+import { AgendamentoEHistoricoCliente } from './agendamentoeHistoricoCliente';
 
 @Injectable()
 export class AgendamentoEHistoricoClienteService {
