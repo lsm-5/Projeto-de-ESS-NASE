@@ -11,12 +11,94 @@ import { InfosDeConsultaClienteService } from './InfosDeConsultaCliente.service'
 })
 export class InfosDeConsultaClienteComponent implements OnInit {
 
-  ngOnInit(){}
-
     constructor(private InfosDeConsultaService: InfosDeConsultaClienteService) {}
-
   
-    agendamentoeHistorico: InfosDeConsultaCliente = new InfosDeConsultaCliente();
-    
+    info: InfosDeConsultaCliente = new InfosDeConsultaCliente();
+    infosCompleta: InfosDeConsultaCliente = new InfosDeConsultaCliente();
+    todasAsInfos: InfosDeConsultaCliente[];
+    todasAsInfosbusca: InfosDeConsultaCliente[];
+    infosduplicada: boolean = false;
+    infosinexistente: boolean = false;
+    infosBuscaLigado: boolean = false;
+    infosInexistenteBusca: boolean = false;
+    verMaisLigado: boolean = false;
+ 
+    criarInfos(a: InfosDeConsultaCliente): void {
+      this.InfosDeConsultaService.criar(a)
+         .then(ab => {
+            if (ab) {
+               this.todasAsInfos.push(ab);
+               this.info = new InfosDeConsultaCliente();
+            } else {
+               this.infosduplicada = true;
+            }
+         })
+         .catch(erro => alert(erro));
+    }
+ 
+    alterarInfos(b: InfosDeConsultaCliente):void{
+       this.InfosDeConsultaService.atualizar(b)
+       .then(ba => {
+          if (ba) {
+            var result: InfosDeConsultaCliente = this.todasAsInfos.find(a => a.cpf == ba.cpf);
+            //var result: InfosDeConsultaCliente = this.todasAsInfos.find(a => a.info == ba.info);
+             if (result){
+                result.copyFrom(ba);
+             } 
+          }else{
+             this.infosinexistente = true;
+          }
+       })
+       .catch(erro => alert(erro));
+    }
+ 
+    removerInfos(a:InfosDeConsultaCliente):void{
+       this.InfosDeConsultaService.remover(a)
+       .then(a=>{
+          if(a){
+             this.todasAsInfos = this.todasAsInfos.filter(b=>b.cpf != a.cpf);
+             this.info = new InfosDeConsultaCliente();
+          }
+       })
+       .catch(erro => alert(erro));
+    }
+ 
+    verMais(a:String):void{
+       this.verMaisLigado = true;
+       this.infosCompleta = this.todasAsInfos.find(x=>x.cpf == a);
+    }
+ 
+    verMenos():void{
+       this.verMaisLigado = false;
+    }
+ 
+    buscarInfos(a:InfosDeConsultaCliente):void{
+       this.InfosDeConsultaService.buscar(a)
+       .then(ab => {
+          if (ab) {
+             this.todasAsInfosbusca = ab;
+             this.infosBuscaLigado = true;
+          } else {
+             this.infosBuscaLigado = true;
+             this.infosInexistenteBusca = true;
+          }
+       })
+       .catch(erro => alert(erro));
+    }
+    cancelarBuscaInfos():void{
+       this.infosBuscaLigado = false;
+    }
+ 
+    onMove(): void {
+       this.infosduplicada = false;
+       this.infosinexistente = false;
+       this.infosInexistenteBusca = false;
+    }
+ 
+    ngOnInit(): void {
+      this.InfosDeConsultaService.getInfos()
+          .then(as => this.todasAsInfos = as)
+          .catch(erro => alert(erro));
+    }
  
 }
