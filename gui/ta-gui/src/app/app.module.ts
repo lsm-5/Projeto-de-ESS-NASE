@@ -7,11 +7,13 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { AtividadeEmCampoComponent } from './atividadeCampo/atividadeEmCampo.component';
 import { AtividadeEmCampoService } from './atividadeCampo/atividadeEmCampo.service';
+import { AgendamentoEHistoricoClienteComponent } from './src/app/agendamento-ehistorico-cliente/agendamento-ehistorico-cliente.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AtividadeEmCampoComponent
+    AtividadeEmCampoComponent,
+    AgendamentoEHistoricoClienteComponent
   ],
   imports: [
     BrowserModule,
