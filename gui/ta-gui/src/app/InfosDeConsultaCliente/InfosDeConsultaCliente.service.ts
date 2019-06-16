@@ -13,7 +13,7 @@ export class InfosDeConsultaClienteService {
   constructor(private http: Http) { }
 
   criar(info: InfosDeConsultaCliente): Promise<InfosDeConsultaCliente> {
-    return this.http.post(this.taURL + "/info",JSON.stringify(info), {headers: this.headers})
+    return this.http.post(this.taURL + "/infoConsulta",JSON.stringify(info), {headers: this.headers})
            .toPromise()
            .then(res => {
               if (res.json().success) {return info;} else {return null;}
@@ -22,7 +22,7 @@ export class InfosDeConsultaClienteService {
   }
 
   remover(info: InfosDeConsultaCliente): Promise<InfosDeConsultaCliente> {
-    return this.http.delete(this.taURL + "/info", {headers: this.headers, body: JSON.stringify(info)})
+    return this.http.delete(this.taURL + "/infoConsulta", {headers: this.headers, body: JSON.stringify(info)})
     .toPromise()
     .then(res => {
       if (res.json().success) {return info;} else {return null;}
@@ -31,7 +31,7 @@ export class InfosDeConsultaClienteService {
   }
 
   atualizar(info: InfosDeConsultaCliente): Promise<InfosDeConsultaCliente>  {
-    return this.http.put(this.taURL + "/info",JSON.stringify(info), {headers: this.headers})
+    return this.http.put(this.taURL + "/infoConsulta",JSON.stringify(info), {headers: this.headers})
          .toPromise()
          .then(res => {
             if (res.json().success) {return info;} else {return null;}
@@ -40,7 +40,7 @@ export class InfosDeConsultaClienteService {
   }
 
   buscar(info: InfosDeConsultaCliente): Promise<InfosDeConsultaCliente[]>  {
-    return this.http.post(this.taURL + "/buscainfo",JSON.stringify(info), {headers: this.headers})
+    return this.http.post(this.taURL + "/buscaInfoConsulta",JSON.stringify(info), {headers: this.headers})
       .toPromise()
       .then(res => {
         if (res.json().failure) {return null;} else {return res.json() as InfosDeConsultaCliente[];}
@@ -49,7 +49,7 @@ export class InfosDeConsultaClienteService {
   }
   
   getInfos(): Promise<InfosDeConsultaCliente[]> {
-    return this.http.get(this.taURL + "/infos")
+    return this.http.get(this.taURL + "/infosConsulta")
              .toPromise()
              .then(res => res.json() as InfosDeConsultaCliente[])
              .catch(this.tratarErro)
