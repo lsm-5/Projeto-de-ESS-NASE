@@ -28,7 +28,7 @@ import { InfosDeConsultaClienteService } from './InfosDeConsultaCliente/InfosDeC
         component: AtividadeEmCampoComponent
       },
       {
-        path: 'aInfosDeConsultaCliente',
+        path: 'InfosDeConsultaCliente',
         component: InfosDeConsultaClienteComponent
       }
     ])
