@@ -5,7 +5,7 @@ import 'rxjs/add/operator/toPromise';
 import { AgendamentoEHistoricoCliente } from './agendamento-ehistorico-cliente';
 
 @Injectable()
-export class agendamentoEHistoricoClienteService {
+export class AgendamentoEHistoricoClienteService {
 
   private headers = new Headers({'Content-Type': 'application/json'});
   private taURL = 'http://localhost:3000';
