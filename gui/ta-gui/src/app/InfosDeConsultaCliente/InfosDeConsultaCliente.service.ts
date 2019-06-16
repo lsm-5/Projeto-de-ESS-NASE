@@ -12,35 +12,35 @@ export class InfosDeConsultaClienteService {
 
   constructor(private http: Http) { }
 
-  criar(agendamentoehistorico: InfosDeConsultaCliente): Promise<InfosDeConsultaCliente> {
-    return this.http.post(this.taURL + "/agendamentoehistorico",JSON.stringify(agendamentoehistorico), {headers: this.headers})
+  criar(info: InfosDeConsultaCliente): Promise<InfosDeConsultaCliente> {
+    return this.http.post(this.taURL + "/info",JSON.stringify(info), {headers: this.headers})
            .toPromise()
            .then(res => {
-              if (res.json().success) {return agendamentoehistorico;} else {return null;}
+              if (res.json().success) {return info;} else {return null;}
            })
            .catch(this.tratarErro);
   }
 
-  remover(agendamentoehistorico: InfosDeConsultaCliente): Promise<InfosDeConsultaCliente> {
-    return this.http.delete(this.taURL + "/agendamentoehistorico", {headers: this.headers, body: JSON.stringify(agendamentoehistorico)})
+  remover(info: InfosDeConsultaCliente): Promise<InfosDeConsultaCliente> {
+    return this.http.delete(this.taURL + "/info", {headers: this.headers, body: JSON.stringify(info)})
     .toPromise()
     .then(res => {
-      if (res.json().success) {return agendamentoehistorico;} else {return null;}
+      if (res.json().success) {return info;} else {return null;}
     })
     .catch(this.tratarErro);
   }
 
-  atualizar(agendamentoehistorico: InfosDeConsultaCliente): Promise<InfosDeConsultaCliente>  {
-    return this.http.put(this.taURL + "/agendamentoehistorico",JSON.stringify(agendamentoehistorico), {headers: this.headers})
+  atualizar(info: InfosDeConsultaCliente): Promise<InfosDeConsultaCliente>  {
+    return this.http.put(this.taURL + "/info",JSON.stringify(info), {headers: this.headers})
          .toPromise()
          .then(res => {
-            if (res.json().success) {return agendamentoehistorico;} else {return null;}
+            if (res.json().success) {return info;} else {return null;}
          })
          .catch(this.tratarErro);
   }
 
-  buscar(agendamentoehistorico: InfosDeConsultaCliente): Promise<InfosDeConsultaCliente[]>  {
-    return this.http.post(this.taURL + "/buscaAgendamentoeHistorico",JSON.stringify(agendamentoehistorico), {headers: this.headers})
+  buscar(info: InfosDeConsultaCliente): Promise<InfosDeConsultaCliente[]>  {
+    return this.http.post(this.taURL + "/buscainfo",JSON.stringify(info), {headers: this.headers})
       .toPromise()
       .then(res => {
         if (res.json().failure) {return null;} else {return res.json() as InfosDeConsultaCliente[];}
@@ -48,8 +48,8 @@ export class InfosDeConsultaClienteService {
       .catch(this.tratarErro)
   }
   
-  getAgendamentoEHistorico(): Promise<InfosDeConsultaCliente[]> {
-    return this.http.get(this.taURL + "/AgendamentosEHistoricos")
+  getInfos(): Promise<InfosDeConsultaCliente[]> {
+    return this.http.get(this.taURL + "/infos")
              .toPromise()
              .then(res => res.json() as InfosDeConsultaCliente[])
              .catch(this.tratarErro)
@@ -57,7 +57,7 @@ export class InfosDeConsultaClienteService {
   
 
   private tratarErro (erro: any): Promise<any>{
-    console.error('Acesso mal sucedido ao serviço de Agendamento/Historico de Cliente', erro);
+    console.error('Acesso mal sucedido ao serviço de Informaçoes (Agendamento/Historico) de Cliente', erro);
     return Promise.reject(erro.message || erro);
   }
   
