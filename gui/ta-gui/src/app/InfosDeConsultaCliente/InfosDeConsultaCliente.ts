@@ -1,4 +1,4 @@
-export class AgendamentoEHistoricoCliente {
+export class InfosDeConsultaCliente {
 
     cpf: string; //do cliente do servico
     nomeProfissional: string; //que vai atender
@@ -24,7 +24,7 @@ export class AgendamentoEHistoricoCliente {
       this.historicoCompleto = false;
       this.dataDaConsulta = "";
     }
-    copyFrom(from: AgendamentoEHistoricoCliente): void {
+    copyFrom(from: InfosDeConsultaCliente): void {
       this.horarioConsulta = from.horarioConsulta;
       this.tipoDeConsulta = from.tipoDeConsulta;
       this.nomeProfissional = from.nomeProfissional;

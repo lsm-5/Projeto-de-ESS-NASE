@@ -2,17 +2,17 @@ import { Injectable }    from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
-import { AgendamentoEHistoricoCliente } from './agendamentoeHistoricoCliente';
+import { InfosDeConsultaCliente } from './InfosDeConsultaCliente';
 
 @Injectable()
-export class AgendamentoEHistoricoClienteService {
+export class InfosDeConsultaClienteService {
 
   private headers = new Headers({'Content-Type': 'application/json'});
   private taURL = 'http://localhost:3000';
 
   constructor(private http: Http) { }
 
-  criar(agendamentoehistorico: AgendamentoEHistoricoCliente): Promise<AgendamentoEHistoricoCliente> {
+  criar(agendamentoehistorico: InfosDeConsultaCliente): Promise<InfosDeConsultaCliente> {
     return this.http.post(this.taURL + "/agendamentoehistorico",JSON.stringify(agendamentoehistorico), {headers: this.headers})
            .toPromise()
            .then(res => {
@@ -21,7 +21,7 @@ export class AgendamentoEHistoricoClienteService {
            .catch(this.tratarErro);
   }
 
-  remover(agendamentoehistorico: AgendamentoEHistoricoCliente): Promise<AgendamentoEHistoricoCliente> {
+  remover(agendamentoehistorico: InfosDeConsultaCliente): Promise<InfosDeConsultaCliente> {
     return this.http.delete(this.taURL + "/agendamentoehistorico", {headers: this.headers, body: JSON.stringify(agendamentoehistorico)})
     .toPromise()
     .then(res => {
@@ -30,7 +30,7 @@ export class AgendamentoEHistoricoClienteService {
     .catch(this.tratarErro);
   }
 
-  atualizar(agendamentoehistorico: AgendamentoEHistoricoCliente): Promise<AgendamentoEHistoricoCliente>  {
+  atualizar(agendamentoehistorico: InfosDeConsultaCliente): Promise<InfosDeConsultaCliente>  {
     return this.http.put(this.taURL + "/agendamentoehistorico",JSON.stringify(agendamentoehistorico), {headers: this.headers})
          .toPromise()
          .then(res => {
@@ -39,19 +39,19 @@ export class AgendamentoEHistoricoClienteService {
          .catch(this.tratarErro);
   }
 
-  buscar(agendamentoehistorico: AgendamentoEHistoricoCliente): Promise<AgendamentoEHistoricoCliente[]>  {
+  buscar(agendamentoehistorico: InfosDeConsultaCliente): Promise<InfosDeConsultaCliente[]>  {
     return this.http.post(this.taURL + "/buscaAgendamentoeHistorico",JSON.stringify(agendamentoehistorico), {headers: this.headers})
       .toPromise()
       .then(res => {
-        if (res.json().failure) {return null;} else {return res.json() as AgendamentoEHistoricoCliente[];}
+        if (res.json().failure) {return null;} else {return res.json() as InfosDeConsultaCliente[];}
       })
       .catch(this.tratarErro)
   }
   
-  getAgendamentoEHistorico(): Promise<AgendamentoEHistoricoCliente[]> {
+  getAgendamentoEHistorico(): Promise<InfosDeConsultaCliente[]> {
     return this.http.get(this.taURL + "/AgendamentosEHistoricos")
              .toPromise()
-             .then(res => res.json() as AgendamentoEHistoricoCliente[])
+             .then(res => res.json() as InfosDeConsultaCliente[])
              .catch(this.tratarErro)
   }
   

@@ -9,14 +9,14 @@ import { AppComponent } from './app.component';
 import { AtividadeEmCampoComponent } from './atividadeCampo/atividadeEmCampo.component';
 import { AtividadeEmCampoService } from './atividadeCampo/atividadeEmCampo.service';
 
-import { AgendamentoEHistoricoClienteComponent } from './agendamentoeHistoricoCliente/agendamentoeHistoricoCliente.component';
-import { AgendamentoEHistoricoClienteService } from './agendamentoeHistoricoCliente/agendamentoeHistoricoCliente.service';
+import { InfosDeConsultaClienteComponent } from './InfosDeConsultaCliente/InfosDeConsultaCliente.component';
+import { InfosDeConsultaClienteService } from './InfosDeConsultaCliente/InfosDeConsultaCliente.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     AtividadeEmCampoComponent,
-    AgendamentoEHistoricoClienteComponent
+    InfosDeConsultaClienteComponent
   ],
   imports: [
     BrowserModule,
@@ -28,12 +28,12 @@ import { AgendamentoEHistoricoClienteService } from './agendamentoeHistoricoClie
         component: AtividadeEmCampoComponent
       },
       {
-        path: 'agendamentoeHistoricoCliente',
-        component: AgendamentoEHistoricoClienteComponent
+        path: 'aInfosDeConsultaCliente',
+        component: InfosDeConsultaClienteComponent
       }
     ])
   ],
-  providers: [AtividadeEmCampoService, AgendamentoEHistoricoClienteService],//pra injetar (dependecias) servicos temos que declarar ele aqui em providers,
+  providers: [AtividadeEmCampoService, InfosDeConsultaClienteService],//pra injetar (dependecias) servicos temos que declarar ele aqui em providers,
   //se for dentro de um @component({providers: AtividadeEmCampoService})aqui fica disponivel pra o compnet e seus filhos
   //aqui no app.module, fica disponivel pra todos os componentes da aplicacao
   bootstrap: [AppComponent]//starta a aplicacao
