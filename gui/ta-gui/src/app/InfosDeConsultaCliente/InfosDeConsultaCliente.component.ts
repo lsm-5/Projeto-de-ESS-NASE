@@ -16,12 +16,12 @@ export class InfosDeConsultaClienteComponent implements OnInit {
     info: InfosDeConsultaCliente = new InfosDeConsultaCliente();
     infosCompleta: InfosDeConsultaCliente = new InfosDeConsultaCliente();
     todasAsInfos: InfosDeConsultaCliente[];
-    todasAsInfosbusca: InfosDeConsultaCliente[];
+    infosBuscadas: InfosDeConsultaCliente[];
     infosduplicada: boolean = false;
     infosinexistente: boolean = false;
     infosBuscaLigado: boolean = false;
     infosInexistenteBusca: boolean = false;
-    verMaisLigado: boolean = false;
+
  
     criarInfosConsulta(a: InfosDeConsultaCliente): void {
       this.InfosDeConsultaService.criar(a)
@@ -29,8 +29,8 @@ export class InfosDeConsultaClienteComponent implements OnInit {
             if (ab) {
                this.todasAsInfos.push(ab);
                this.info = new InfosDeConsultaCliente();
-            } else {
-               this.infosduplicada = true;
+         //   } else {
+              // this.infosduplicada = true;//tem que repensar os processos de validacao pro caso do agendamento.
             }
          })
          .catch(erro => alert(erro));
@@ -62,21 +62,13 @@ export class InfosDeConsultaClienteComponent implements OnInit {
        })
        .catch(erro => alert(erro));
     }
- 
-    verMais(a:String):void{
-       this.verMaisLigado = true;
-       this.infosCompleta = this.todasAsInfos.find(x=>x.cpf == a);
-    }
- 
-    verMenos():void{
-       this.verMaisLigado = false;
-    }
+
  
     buscarInfosConsulta(a:InfosDeConsultaCliente):void{
        this.InfosDeConsultaService.buscar(a)
        .then(ab => {
           if (ab) {
-             this.todasAsInfosbusca = ab;
+             this.infosBuscadas = ab;
              this.infosBuscaLigado = true;
           } else {
              this.infosBuscaLigado = true;
